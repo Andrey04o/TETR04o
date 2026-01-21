@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: T04oGameProcessUpdate
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: cbde1146863ae8c49b99374b03547c42,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 69b57a9c94d7e2b4ca351aba5bc8c1a9,
     type: 2}
   udonAssembly: 
   assemblyError: 
@@ -21,7 +21,7 @@ MonoBehaviour:
   compiledVersion: 2
   behaviourSyncMode: 1
   hasInteractEvent: 0
-  scriptID: 4034065476531379031
+  scriptID: -6128902727259165257
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
@@ -62,7 +62,7 @@ MonoBehaviour:
       Data: 3|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: T04oGameProcess, Assembly-CSharp
+      Data: TETR04o.T04oGameProcess, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 

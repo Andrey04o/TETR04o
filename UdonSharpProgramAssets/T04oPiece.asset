@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: T04oPiece
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: df79c60510c4ae2469491cecaa5cf071,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: f94bb5f9249fedf458789b3bd7229c3a,
     type: 2}
   udonAssembly: 
   assemblyError: 
@@ -21,7 +21,7 @@ MonoBehaviour:
   compiledVersion: 2
   behaviourSyncMode: 4
   hasInteractEvent: 0
-  scriptID: 1980227348822394396
+  scriptID: 1995050639686930294
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
@@ -62,7 +62,7 @@ MonoBehaviour:
       Data: 3|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: T04oPieceLine[], Assembly-CSharp
+      Data: TETR04o.T04oPieceLine[], Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -230,7 +230,7 @@ MonoBehaviour:
       Data: 13|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: T04oGameField, Assembly-CSharp
+      Data: TETR04o.T04oGameField, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -290,7 +290,7 @@ MonoBehaviour:
       Data: 17|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: T04oWallKick, Assembly-CSharp
+      Data: TETR04o.T04oWallKick, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -494,7 +494,7 @@ MonoBehaviour:
       Data: 27|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: T04oPiece, Assembly-CSharp
+      Data: TETR04o.T04oPiece, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 

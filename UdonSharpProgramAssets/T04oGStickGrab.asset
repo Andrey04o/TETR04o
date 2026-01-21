@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: T04oGStickGrab
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: d4020f5da1de4e54080711b3b0886a05,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 42995ced7de0c5a40b3251feee5761e9,
     type: 2}
   udonAssembly: 
   assemblyError: 
@@ -21,7 +21,7 @@ MonoBehaviour:
   compiledVersion: 2
   behaviourSyncMode: 0
   hasInteractEvent: 0
-  scriptID: -6462176761548384716
+  scriptID: 2600444834093497017
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
@@ -62,7 +62,7 @@ MonoBehaviour:
       Data: 3|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: T04oGStick, Assembly-CSharp
+      Data: TETR04o.T04oGStick, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 

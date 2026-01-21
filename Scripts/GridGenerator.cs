@@ -1,12 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
 using VRC;
-
-
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-
+namespace TETR04o {
 public class GridGenerator : MonoBehaviour
 {
     [SerializeField] private T04oCell cellPrefab;
@@ -110,3 +108,4 @@ public class GridGeneratorEditor : Editor
     }
 }
 #endif
+}

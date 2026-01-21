@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: T04oWallKick
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 78fc11db73e769342ad018ea2620527e,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: e2964b5ebd133094ca401e5b5399c78f,
     type: 2}
   udonAssembly: 
   assemblyError: 
@@ -21,7 +21,7 @@ MonoBehaviour:
   compiledVersion: 2
   behaviourSyncMode: 0
   hasInteractEvent: 0
-  scriptID: -7991419619046918682
+  scriptID: 5620715142030738339
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 

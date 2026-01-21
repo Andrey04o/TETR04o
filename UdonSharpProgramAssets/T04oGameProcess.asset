@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: T04oGameProcess
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 41e7de0e857639a44afc0787d5496a26,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: f08f888d4aa31f943a6a58de0ec1a253,
     type: 2}
   udonAssembly: 
   assemblyError: 
@@ -21,7 +21,7 @@ MonoBehaviour:
   compiledVersion: 2
   behaviourSyncMode: 4
   hasInteractEvent: 0
-  scriptID: 1337023305860688264
+  scriptID: 258004495265135837
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
@@ -62,7 +62,7 @@ MonoBehaviour:
       Data: 3|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: T04oGameProcessUpdate, Assembly-CSharp
+      Data: TETR04o.T04oGameProcessUpdate, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -176,7 +176,7 @@ MonoBehaviour:
       Data: 10|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: T04oGameField, Assembly-CSharp
+      Data: TETR04o.T04oGameField, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -230,7 +230,7 @@ MonoBehaviour:
       Data: 13|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: T04oGameField[], Assembly-CSharp
+      Data: TETR04o.T04oGameField[], Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -338,7 +338,7 @@ MonoBehaviour:
       Data: 19|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: T04oPiece[], Assembly-CSharp
+      Data: TETR04o.T04oPiece[], Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -392,7 +392,7 @@ MonoBehaviour:
       Data: 22|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: T04oPiece, Assembly-CSharp
+      Data: TETR04o.T04oPiece, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -446,7 +446,7 @@ MonoBehaviour:
       Data: 25|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: T04oMain, Assembly-CSharp
+      Data: TETR04o.T04oMain, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -500,7 +500,7 @@ MonoBehaviour:
       Data: 28|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: T04oScoring, Assembly-CSharp
+      Data: TETR04o.T04oScoring, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 

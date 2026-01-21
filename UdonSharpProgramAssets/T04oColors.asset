@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: T04oColors
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: ab433899f1bfb1244b09385528df6e05,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: c48f551bc6dc47b4e9b685a357ac086b,
     type: 2}
   udonAssembly: 
   assemblyError: 
@@ -21,7 +21,7 @@ MonoBehaviour:
   compiledVersion: 2
   behaviourSyncMode: 0
   hasInteractEvent: 0
-  scriptID: -7273914567654524596
+  scriptID: -7404405982229337028
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 

@@ -16,7 +16,7 @@ using UdonSharp;
 public static class CreateUdonSharpAssetAndRename
 {
     private const string MenuPath = "Assets/U# Tools/Create UdonSharp Program Asset and Rename To UdonSharpBehaviour";
-    private const string TargetFolder = "Assets/Tetris04o/UdonSharpProgramAssets";
+    private const string TargetFolder = "Assets/TETR04o/UdonSharpProgramAssets";
 
     [MenuItem(MenuPath, true)]
     private static bool Validate_CreateProgramAssetAndRename()
@@ -67,7 +67,7 @@ public static class CreateUdonSharpAssetAndRename
         // Ensure target folder exists
         if (!AssetDatabase.IsValidFolder(TargetFolder))
         {
-            string parent = "Assets/Tetris04o";
+            string parent = "Assets/TETR04o";
             AssetDatabase.CreateFolder(parent, "UdonSharpProgramAssets");
             AssetDatabase.Refresh();
         }

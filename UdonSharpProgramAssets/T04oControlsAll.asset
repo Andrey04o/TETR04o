@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: T04oControlsAll
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 9a19c32ea6c0b2844b0e2d6b841e7fbb,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 6e3accee2569c8749af6a5fb2c64e580,
     type: 2}
   udonAssembly: 
   assemblyError: 
@@ -21,7 +21,7 @@ MonoBehaviour:
   compiledVersion: 2
   behaviourSyncMode: 0
   hasInteractEvent: 0
-  scriptID: -3753197375270125863
+  scriptID: -5727091085513830015
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
@@ -62,7 +62,7 @@ MonoBehaviour:
       Data: 3|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: T04oGStickGrab[], Assembly-CSharp
+      Data: TETR04o.T04oGStickGrab[], Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -122,7 +122,7 @@ MonoBehaviour:
       Data: 7|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: T04oGButton[], Assembly-CSharp
+      Data: TETR04o.T04oGButton[], Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -176,7 +176,7 @@ MonoBehaviour:
       Data: 10|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: T04oGStation[], Assembly-CSharp
+      Data: TETR04o.T04oGStation[], Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -230,7 +230,7 @@ MonoBehaviour:
       Data: 13|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: T04oGStickDetectMovement[], Assembly-CSharp
+      Data: TETR04o.T04oGStickDetectMovement[], Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -284,7 +284,7 @@ MonoBehaviour:
       Data: 16|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: T04oGPCControl[], Assembly-CSharp
+      Data: TETR04o.T04oGPCControl[], Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 

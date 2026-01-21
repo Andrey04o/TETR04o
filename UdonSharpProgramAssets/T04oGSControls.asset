@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: T04oGSControls
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 635797d00385046428a98fc815cb554b,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 1611f622eaa1a8f4185c4499988d6817,
     type: 2}
   udonAssembly: 
   assemblyError: 
@@ -21,7 +21,7 @@ MonoBehaviour:
   compiledVersion: 2
   behaviourSyncMode: 1
   hasInteractEvent: 0
-  scriptID: -1271841373121427409
+  scriptID: -553669041976105684
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
@@ -116,7 +116,7 @@ MonoBehaviour:
       Data: 6|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: T04oMain, Assembly-CSharp
+      Data: TETR04o.T04oMain, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -176,7 +176,7 @@ MonoBehaviour:
       Data: 10|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: T04oGStation, Assembly-CSharp
+      Data: TETR04o.T04oGStation, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 

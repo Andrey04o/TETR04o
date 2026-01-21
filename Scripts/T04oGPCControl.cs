@@ -3,125 +3,174 @@ using System.Collections.Generic;
 using UnityEngine;
 using UdonSharp;
 using VRC.Udon.Common;
-
-public class T04oGPCControl : UdonSharpBehaviour
-{
-    public T04oMain main;
-    public T04oGStation station;
-    public float timeRepeatKey = 0.3f;
-    float timer = 0f;
-    bool isLeftPressed;
-    bool isRightPressed;
-    bool isUpPressed;
-    bool isDownPressed;
-    public bool isDisableRepeatUp = false;
-    void Start()
+namespace TETR04o {
+    public class T04oGPCControl : UdonSharpBehaviour
     {
-        
-    }
+        public T04oMain main;
+        public T04oGStation station;
+        public float timeRepeatKey = 0.3f;
+        float timer = 0f;
+        bool isLeftPressed;
+        bool isRightPressed;
+        bool isUpPressed;
+        bool isDownPressed;
+        public bool isDisableRepeatUp = false;
+        void Start()
+        {
+            
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        HandleInput();
-        RepeatKeys();
-    }
-    void RepeatKeys() {
-        if (isLeftPressed || isRightPressed || isUpPressed || isDownPressed) {
-            timer += Time.deltaTime;
-            if (timer < timeRepeatKey) {
-                return;
+        // Update is called once per frame
+        void Update()
+        {
+            HandleInput();
+            RepeatKeys();
+        }
+        void RepeatKeys() {
+            if (isLeftPressed || isRightPressed || isUpPressed || isDownPressed) {
+                timer += Time.deltaTime;
+                if (timer < timeRepeatKey) {
+                    return;
+                }
+                timer = 0f;
+                if (isLeftPressed) {
+                    main.controls.Left();
+                }
+                if (isRightPressed) {
+                    main.controls.Right();
+                }
+                if (isUpPressed && isDisableRepeatUp == false) {
+                    main.controls.Up();
+                }
+                if (isDownPressed) {
+                    main.controls.Down();
+                }
+            } else {
+                timer = 0;
             }
-            timer = 0f;
-            if (isLeftPressed) {
-                main.controls.Left();
+        }
+
+        private void HandleInput()
+        {
+            if (main.controls.isInterface) {
+                if (T04oHotkeys.CheckButtonDown(main.hotkeys.indexLefts))
+                {
+                    isLeftPressed = true;
+                    main.controls.Left();
+                }
+                if (T04oHotkeys.CheckButtonDown(main.hotkeys.indexRights))
+                {
+                    isRightPressed = true;
+                    main.controls.Right();
+                }
+
+                if (T04oHotkeys.CheckButtonDown(main.hotkeys.indexDowns))
+                {
+                    isDownPressed = true;
+                    main.controls.Down();
+                }
+
+                if (T04oHotkeys.CheckButtonDown(main.hotkeys.indexUps))
+                {
+                    isUpPressed = true;
+                    main.controls.Up();
+                }
+                if (T04oHotkeys.CheckButtonUp(main.hotkeys.indexLefts))
+                {
+                    isLeftPressed = false;
+                }
+
+                if (T04oHotkeys.CheckButtonUp(main.hotkeys.indexRights))
+                {
+                    isRightPressed = false;
+                }
+
+                if (T04oHotkeys.CheckButtonUp(main.hotkeys.indexDowns))
+                {
+                    isDownPressed = false;
+                }
+
+                if (T04oHotkeys.CheckButtonUp(main.hotkeys.indexUps))
+                {
+                    isUpPressed = false;
+                }
+                if (T04oHotkeys.CheckButtonDown(main.hotkeys.indexConfirm))
+                {
+                    main.controls.RotateLeft();
+                }
+            } else {
+                if (T04oHotkeys.CheckButtonDown(main.hotkeys.indexMoveLeft))
+                {
+                    isLeftPressed = true;
+                    main.controls.Left();
+                }
+                if (T04oHotkeys.CheckButtonDown(main.hotkeys.indexMoveRight))
+                {
+                    isRightPressed = true;
+                    main.controls.Right();
+                }
+
+                if (T04oHotkeys.CheckButtonDown(main.hotkeys.indexSoftDrops))
+                {
+                    isDownPressed = true;
+                    main.controls.Down();
+                }
+
+                if (T04oHotkeys.CheckButtonUp(main.hotkeys.indexMoveLeft))
+                {
+                    isLeftPressed = false;
+                }
+
+                if (T04oHotkeys.CheckButtonUp(main.hotkeys.indexMoveRight))
+                {
+                    isRightPressed = false;
+                }
+
+                if (T04oHotkeys.CheckButtonUp(main.hotkeys.indexSoftDrops))
+                {
+                    isDownPressed = false;
+                }
+
+
+                if (T04oHotkeys.CheckButtonDown(main.hotkeys.indexRotateLefts))
+                {
+                    main.controls.RotateLeft();
+                }
+
+                if (T04oHotkeys.CheckButtonDown(main.hotkeys.indexRotateRights))
+                {
+                    main.controls.RotateRight();
+                }
+
+                if (T04oHotkeys.CheckButtonDown(main.hotkeys.indexHolds)) {
+                    main.controls.Respawn();
+                }
+                if (T04oHotkeys.CheckButtonDown(main.hotkeys.indexHardDrops)) {
+                    main.controls.SpaceBar();
+                }
             }
-            if (isRightPressed) {
-                main.controls.Right();
+            
+            
+            if (T04oHotkeys.CheckButtonDown(main.hotkeys.indexExits)) {
+                if (VRC.SDKBase.InputManager.GetLastUsedInputMethod() == VRC.SDKBase.VRCInputMethod.Touch) {
+                    return;
+                }
+                station.Leave();
             }
-            if (isUpPressed && isDisableRepeatUp == false) {
-                main.controls.Up();
-            }
-            if (isDownPressed) {
-                main.controls.Down();
-            }
-        } else {
-            timer = 0;
-        }
-    }
-
-    private void HandleInput()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
-        {
-            isLeftPressed = true;
-            main.controls.Left();
+            
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
-        {
-            isRightPressed = true;
-            main.controls.Right();
-        }
-
-        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
-        {
-            isDownPressed = true;
-            main.controls.Down();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
-        {
-            isUpPressed = true;
-            main.controls.Up();
-        }
-        if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A))
-        {
-            isLeftPressed = false;
-        }
-
-        if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D))
-        {
-            isRightPressed = false;
-        }
-
-        if (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S))
-        {
+        public void UnholdButtons() {
             isDownPressed = false;
-        }
-
-        if (Input.GetKeyUp(KeyCode.Z) || Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W))
-        {
+            isLeftPressed = false;
+            isRightPressed = false;
             isUpPressed = false;
         }
-
-        if (Input.GetKeyDown(KeyCode.Q))
+        /*
+        public override void InputDrop(bool value, UdonInputEventArgs args)
         {
-            main.controls.RotateLeft();
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            main.controls.RotateRight();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.F)) {
-            main.controls.Respawn();
-        }
-        if (Input.GetMouseButtonDown(1)) {
-            if (VRC.SDKBase.InputManager.GetLastUsedInputMethod() == VRC.SDKBase.VRCInputMethod.Touch) {
-                return;
-            }
             station.Leave();
         }
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            main.controls.SpaceBar();
-        }
+        */
     }
-    /*
-    public override void InputDrop(bool value, UdonInputEventArgs args)
-    {
-        station.Leave();
-    }
-    */
 }
