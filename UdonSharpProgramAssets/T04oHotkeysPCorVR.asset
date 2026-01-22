@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: T04oHotkeysPCorVR
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: cfc5df196ae29984f914b421e080f09d,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 86dff41b645035d408b80ba3352e30a1,
     type: 2}
   udonAssembly: 
   assemblyError: 
