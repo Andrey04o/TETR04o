@@ -14353,7 +14353,7 @@ PrefabInstance:
     - target: {fileID: 772674166593671427, guid: 383f52c3c0e43954f8689c384e6ca8ec,
         type: 3}
       propertyPath: m_text
-      value: R - rotate right
+      value: E - rotate right
       objectReference: {fileID: 0}
     - target: {fileID: 772674166593671427, guid: 383f52c3c0e43954f8689c384e6ca8ec,
         type: 3}

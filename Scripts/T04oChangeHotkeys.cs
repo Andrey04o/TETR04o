@@ -18,6 +18,7 @@ namespace TETR04o {
         public TextMeshProUGUI textMeshLetter;
         public KeyCode previousKeyKode;
         public int indexButtonNumber = 0;
+        public string textPressAnyKey = "Press any key";
         
         void Update() {
             if (Input.anyKeyDown) {
@@ -42,6 +43,7 @@ namespace TETR04o {
         
         public void EnableCheckKeyboard() {
             gameObject.SetActive(true);
+            textMeshLetter.text = textPressAnyKey;
         }
         private KeyCode GetKey() {
             foreach (int index in hotkeys.indexKeyCodes) {
