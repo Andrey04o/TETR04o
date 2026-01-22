@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: T04oHotkeyLine
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 5d64bfb82de1e5d4f8dfb4aff94fa1e3,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 612993d7771bfcd4fbad17bfa20c0cc1,
     type: 2}
   udonAssembly: 
   assemblyError: 

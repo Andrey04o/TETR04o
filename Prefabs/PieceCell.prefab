@@ -103,7 +103,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -132,7 +132,10 @@ MonoBehaviour:
   meshRenderer: {fileID: 2543437843156904725}
   cellLocation: {fileID: 0}
   cellCheck: {fileID: 0}
+  cellGhost: {fileID: 0}
+  cellGhostCheck: {fileID: 0}
   position: {x: 0, y: 0}
+  colorPiece: 0
   positionRotated: {x: 0, y: 0}
   movementRotation: {x: 0, y: 0}
   positionRotatedCheck: {x: 0, y: 0}
@@ -155,7 +158,7 @@ MonoBehaviour:
   SynchronizePosition: 0
   AllowCollisionOwnershipTransfer: 0
   Reliable: 0
-  _syncMethod: 0
+  _syncMethod: 2
   serializedProgramAsset: {fileID: 11400000, guid: a854eb12e84a0e34d802ac45934fb115,
     type: 2}
   programSource: {fileID: 11400000, guid: a660dba89dcc28d41a2a436206f64508, type: 2}

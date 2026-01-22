@@ -3374,12 +3374,12 @@ PrefabInstance:
     - target: {fileID: 7321135179399350623, guid: 8f0ba3797ff311b49bc34d1a83e44153,
         type: 3}
       propertyPath: m_text
-      value: Controls settings
+      value: Control settings
       objectReference: {fileID: 0}
     - target: {fileID: 7321135179399350623, guid: 8f0ba3797ff311b49bc34d1a83e44153,
         type: 3}
       propertyPath: m_fontSize
-      value: 42.5
+      value: 44.75
       objectReference: {fileID: 0}
     - target: {fileID: 7321135179399350623, guid: 8f0ba3797ff311b49bc34d1a83e44153,
         type: 3}
