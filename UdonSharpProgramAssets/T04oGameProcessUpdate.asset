@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: T04oGameProcessUpdate
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 36bba349ce6ab8e408d76e84802496c9,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 69b57a9c94d7e2b4ca351aba5bc8c1a9,
     type: 2}
   udonAssembly: 
   assemblyError: 
@@ -62,7 +62,7 @@ MonoBehaviour:
       Data: 3|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TETR04o.T04oGameProcess, Assembly-CSharp
+      Data: TETR04o.T04oGameProcess, TETR04o
     - Name: 
       Entry: 8
       Data: 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: T04oHotkeys
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 9d968a88514607a4fa333d0d945374e8,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 7a4d9e0499705db4ca596d37600cd6fb,
     type: 2}
   udonAssembly: 
   assemblyError: 
@@ -794,7 +794,7 @@ MonoBehaviour:
       Data: 35|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TETR04o.T04oHotkeyLine[], Assembly-CSharp
+      Data: TETR04o.T04oHotkeyLine[], TETR04o
     - Name: 
       Entry: 8
       Data: 

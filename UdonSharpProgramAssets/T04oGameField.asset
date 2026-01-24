@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: T04oGameField
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: adf587cbbcc0ac546a43e4f52782c4f7,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 5169c17f2d80d2241a67efd5e136d4bd,
     type: 2}
   udonAssembly: 
   assemblyError: 
@@ -62,7 +62,7 @@ MonoBehaviour:
       Data: 3|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TETR04o.T04oLine[], Assembly-CSharp
+      Data: TETR04o.T04oLine[], TETR04o
     - Name: 
       Entry: 8
       Data: 
@@ -122,7 +122,7 @@ MonoBehaviour:
       Data: 7|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TETR04o.T04oPiece, Assembly-CSharp
+      Data: TETR04o.T04oPiece, TETR04o
     - Name: 
       Entry: 8
       Data: 
@@ -290,7 +290,7 @@ MonoBehaviour:
       Data: 17|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TETR04o.T04oGameProcess, Assembly-CSharp
+      Data: TETR04o.T04oGameProcess, TETR04o
     - Name: 
       Entry: 8
       Data: 
@@ -458,7 +458,7 @@ MonoBehaviour:
       Data: 27|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TETR04o.T04oColors, Assembly-CSharp
+      Data: TETR04o.T04oColors, TETR04o
     - Name: 
       Entry: 8
       Data: 

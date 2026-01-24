@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: T04oGameProcess
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: d5e407b975c96da4899507f09075a95b,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: f08f888d4aa31f943a6a58de0ec1a253,
     type: 2}
   udonAssembly: 
   assemblyError: 
@@ -62,7 +62,7 @@ MonoBehaviour:
       Data: 3|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TETR04o.T04oGameProcessUpdate, Assembly-CSharp
+      Data: TETR04o.T04oGameProcessUpdate, TETR04o
     - Name: 
       Entry: 8
       Data: 
@@ -176,7 +176,7 @@ MonoBehaviour:
       Data: 10|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TETR04o.T04oGameField, Assembly-CSharp
+      Data: TETR04o.T04oGameField, TETR04o
     - Name: 
       Entry: 8
       Data: 
@@ -230,7 +230,7 @@ MonoBehaviour:
       Data: 13|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TETR04o.T04oGameField[], Assembly-CSharp
+      Data: TETR04o.T04oGameField[], TETR04o
     - Name: 
       Entry: 8
       Data: 
@@ -338,7 +338,7 @@ MonoBehaviour:
       Data: 19|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TETR04o.T04oPiece[], Assembly-CSharp
+      Data: TETR04o.T04oPiece[], TETR04o
     - Name: 
       Entry: 8
       Data: 
@@ -392,7 +392,7 @@ MonoBehaviour:
       Data: 22|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TETR04o.T04oPiece, Assembly-CSharp
+      Data: TETR04o.T04oPiece, TETR04o
     - Name: 
       Entry: 8
       Data: 
@@ -446,7 +446,7 @@ MonoBehaviour:
       Data: 25|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TETR04o.T04oMain, Assembly-CSharp
+      Data: TETR04o.T04oMain, TETR04o
     - Name: 
       Entry: 8
       Data: 
@@ -500,7 +500,7 @@ MonoBehaviour:
       Data: 28|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TETR04o.T04oScoring, Assembly-CSharp
+      Data: TETR04o.T04oScoring, TETR04o
     - Name: 
       Entry: 8
       Data: 

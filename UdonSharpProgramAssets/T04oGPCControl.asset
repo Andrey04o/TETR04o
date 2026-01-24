@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: T04oGPCControl
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 518cd2948bcd0c84f832f6bb97fd65ae,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: e5cab40f200f50345a3e218c077c5d9a,
     type: 2}
   udonAssembly: 
   assemblyError: 
@@ -62,7 +62,7 @@ MonoBehaviour:
       Data: 3|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TETR04o.T04oMain, Assembly-CSharp
+      Data: TETR04o.T04oMain, TETR04o
     - Name: 
       Entry: 8
       Data: 
@@ -122,7 +122,7 @@ MonoBehaviour:
       Data: 7|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TETR04o.T04oGStation, Assembly-CSharp
+      Data: TETR04o.T04oGStation, TETR04o
     - Name: 
       Entry: 8
       Data: 

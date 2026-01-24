@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: T04oMain
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: a0544a101cc5c7e438af7981e7e7a305,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: e6d70725d60015446a0a173b07c3c754,
     type: 2}
   udonAssembly: 
   assemblyError: 
@@ -62,7 +62,7 @@ MonoBehaviour:
       Data: 3|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TETR04o.T04oGameProcess, Assembly-CSharp
+      Data: TETR04o.T04oGameProcess, TETR04o
     - Name: 
       Entry: 8
       Data: 
@@ -122,7 +122,7 @@ MonoBehaviour:
       Data: 7|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TETR04o.T04oIMainMenu, Assembly-CSharp
+      Data: TETR04o.T04oIMainMenu, TETR04o
     - Name: 
       Entry: 8
       Data: 
@@ -176,7 +176,7 @@ MonoBehaviour:
       Data: 10|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TETR04o.T04oGControls, Assembly-CSharp
+      Data: TETR04o.T04oGControls, TETR04o
     - Name: 
       Entry: 8
       Data: 
@@ -230,7 +230,7 @@ MonoBehaviour:
       Data: 13|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TETR04o.T04oIControls, Assembly-CSharp
+      Data: TETR04o.T04oIControls, TETR04o
     - Name: 
       Entry: 8
       Data: 
@@ -284,7 +284,7 @@ MonoBehaviour:
       Data: 16|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TETR04o.T04oControlsAll, Assembly-CSharp
+      Data: TETR04o.T04oControlsAll, TETR04o
     - Name: 
       Entry: 8
       Data: 
@@ -338,7 +338,7 @@ MonoBehaviour:
       Data: 19|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TETR04o.T04oScoring, Assembly-CSharp
+      Data: TETR04o.T04oScoring, TETR04o
     - Name: 
       Entry: 8
       Data: 
@@ -392,7 +392,7 @@ MonoBehaviour:
       Data: 22|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TETR04o.T04oHotkeys, Assembly-CSharp
+      Data: TETR04o.T04oHotkeys, TETR04o
     - Name: 
       Entry: 8
       Data: 
@@ -446,7 +446,7 @@ MonoBehaviour:
       Data: 25|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TETR04o.T04oControls, Assembly-CSharp
+      Data: TETR04o.T04oControls, TETR04o
     - Name: 
       Entry: 8
       Data: 

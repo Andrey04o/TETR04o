@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: T04oGStick
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 2a3baae1968cd824590bf0065fa0cdf6,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: fb64d2b1b62fe5e4c83f1ee8a3f7aaba,
     type: 2}
   udonAssembly: 
   assemblyError: 
@@ -62,7 +62,7 @@ MonoBehaviour:
       Data: 3|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TETR04o.T04oMain, Assembly-CSharp
+      Data: TETR04o.T04oMain, TETR04o
     - Name: 
       Entry: 8
       Data: 
@@ -176,7 +176,7 @@ MonoBehaviour:
       Data: 10|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TETR04o.T04oGStickDetectMovement, Assembly-CSharp
+      Data: TETR04o.T04oGStickDetectMovement, TETR04o
     - Name: 
       Entry: 8
       Data: 
