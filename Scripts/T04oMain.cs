@@ -14,9 +14,11 @@ namespace TETR04o {
         public T04oControlsAll controlsAll;
         public T04oScoring scoring;
         public T04oHotkeys hotkeys;
+        public T04oResizerButton resizerButton;
         [HideInInspector] public T04oControls controls;
         [UdonSynced] byte isGameStarted = 0;
         [UdonSynced] byte isUsing = 0;
+        [UdonSynced] byte playerID = 0;
         public void ChangeToGame() {
             mainMenu.gameObject.SetActive(false);
             gameProcess.gameProcessInterface.SetActive(true);
@@ -36,22 +38,23 @@ namespace TETR04o {
         }
         public void BlockInteractions(VRCPlayerApi playerApi) {
             isUsing = 1;
-            if (playerApi == Networking.LocalPlayer) {
-                return;
-            }
-            controlsAll.DisableInteractions(true);
+            resizerButton.resizerTimer.StopTimer();
             RequestSerialization();
         }
         public void UnblockInteractions() {
             isUsing = 0;
             controlsAll.DisableInteractions(false);
+            resizerButton.DisableInteraction(false);
+            resizerButton.StartTheTimerIfSizeDifferent();
             RequestSerialization();
         }
         public void CheckInteractions() {
             if (isUsing == 1) {
                 controlsAll.DisableInteractions(true);
+                resizerButton.DisableInteraction(true);
             } else {
                 controlsAll.DisableInteractions(false);
+                resizerButton.DisableInteraction(false);
             }
         }
         public void StartTheGame() {
@@ -70,11 +73,19 @@ namespace TETR04o {
             controlsAll.StartInteractions();
             ChangeToInterface();
         }
+        public void SetOwnerIfNot(VRCPlayerApi player = null) {
+            if (player == null) player = Networking.LocalPlayer;
+            if (playerID != (byte)(player.playerId % 255)) {
+                SetOwner(player);
+            }
+        }
         public void SetOwner(VRCPlayerApi player = null) {
             if (gameProcess.isGameRunning) {
                 gameProcess.StartUpdate();
             }
             if (player == null) player = Networking.LocalPlayer;
+
+            playerID = (byte)(player.playerId % 255);
             if (Networking.IsOwner(player, gameObject)) {
                 return;
             }
@@ -83,6 +94,7 @@ namespace TETR04o {
             Networking.SetOwner(player, gameProcess.gameField.gameObject);
             Networking.SetOwner(player, mainMenu.gameObject);
             Networking.SetOwner(player, scoring.gameObject);
+            Networking.SetOwner(player, resizerButton.gameObject);
             foreach (T04oLine line in gameProcess.gameField.lines) {
                 Networking.SetOwner(player, line.gameObject);
             }
@@ -95,10 +107,23 @@ namespace TETR04o {
 
         public override void OnOwnershipTransferred(VRCPlayerApi newOwner)
         {
-            if (Networking.LocalPlayer != newOwner) return;
-            if (Networking.IsOwner(newOwner, gameProcess.gameObject) == false) {
-                SetOwner(newOwner);
+            if (playerID != (newOwner.playerId % 255)) {
+                UnblockInteractions();
+                if (Networking.LocalPlayer == newOwner) {
+                    SetOwner(Networking.LocalPlayer);
+                }
             }
+            if (Networking.LocalPlayer != newOwner) {
+                resizerButton.resizerTimer.StopTimer();
+                return;
+            }
+        }
+        public override void OnPlayerRespawn(VRCPlayerApi player)
+        {
+            if (Networking.IsOwner(player, this.gameObject)) {
+                UnblockInteractions();
+            }
+            base.OnPlayerRespawn(player);
         }
 
         public override void OnDeserialization()

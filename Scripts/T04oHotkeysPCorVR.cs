@@ -11,7 +11,7 @@ namespace TETR04o {
     {
         public GameObject pcSettings;
         public GameObject vrSettings;
-        void Awake()
+        void Start()
         {
             vrSettings.SetActive(false);
             pcSettings.SetActive(false);

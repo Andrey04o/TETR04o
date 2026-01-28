@@ -12,6 +12,8 @@ namespace TETR04o {
         public override void Interact()
         {
             base.Interact();
+            main.SetOwnerIfNot();
+            main.resizerButton.StartTheTimerIfSizeDifferent();
             if (isRotateLeft) {
                 main.controls.RotateLeft();
             }

@@ -186,7 +186,7 @@ namespace TETR04o {
 
         // Load a control action and decode the 3 key indexes
         public void LoadControl(VRCPlayerApi playerApi, keyType key) {
-            byte[] encoded = PlayerData.GetBytes(playerApi, key.ToString());
+            byte[] encoded = PlayerData.GetBytes(playerApi, nameForSavePersistance+key.ToString());
             if (encoded != null && encoded.Length == 6) {
                 DecodeControls(encoded, out int index0, out int index1, out int index2);
                 SetKey(key, (KeyCode)index0, 0);
@@ -196,7 +196,7 @@ namespace TETR04o {
         }
 
         void ReadKey(VRCPlayerApi playerApi, keyType key) {
-            SetKey(key, (KeyCode)PlayerData.GetUShort(playerApi, key.ToString()), 0);
+            SetKey(key, (KeyCode)PlayerData.GetUShort(playerApi, nameForSavePersistance+key.ToString()), 0);
         }
         public void LoadControls(VRCPlayerApi playerApi) {
             LoadControl(playerApi, keyType.left);
