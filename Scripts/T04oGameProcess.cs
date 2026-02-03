@@ -12,6 +12,7 @@ namespace TETR04o {
     [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     public class T04oGameProcess : UdonSharpBehaviour
     {
+        public byte id = 0;
         public T04oGameProcessUpdate gameProcessUpdate;
         public GameObject gameProcessInterface;
         public T04oGameField gameField;
@@ -19,6 +20,8 @@ namespace TETR04o {
         public T04oGameField gameFieldHold;
         public T04oPiece[] pieces;
         public T04oPiece currentPiece;
+        public T04oGarbageMeter garbageMeter;
+        public T04oGarbageSender garbageSender;
         public T04oMain main;
         public T04oScoring scoring;
         private T04oPiece nextPiece;
@@ -39,6 +42,7 @@ namespace TETR04o {
         [UdonSynced] byte indexLevelSpeed = 1;
         [UdonSynced] byte linesClearedToLevelUp = 1;
         [UdonSynced] byte countHold = 1;
+        [UdonSynced] byte indexCombo = 0;
         public void StartUpdate() {
             gameProcessUpdate.gameObject.SetActive(true);
         }
@@ -71,6 +75,8 @@ namespace TETR04o {
             //InitIndexes();
             StartUpdate();
             MakeGameClear();
+            garbageMeter.ClearGarbage();
+            garbageSender.ClearGarbage();
             isGameRunning = true;
             //gameObject.SetActive(true);
             gameProcessInterface.SetActive(true);
@@ -127,11 +133,6 @@ namespace TETR04o {
             //RequestSerialization();
         }
         void ChooseNextPiece() {
-            //nextPiece = pieces[Random.Range(0,7)];
-            //gameFieldNextPieces[0].ClearNoSync();
-            //gameFieldNextPieces[0].DrawCells(nextPiece);
-            //nextPieceNetwork[0] = (byte)nextPiece.index;
-            //nextPieceNetwork[nextPieceNetwork.Length - 1] = (byte)pieces[Random.Range(0,7)].index;
             for (int i = 0; i < nextPieceNetwork.Length - 1; i++) {
                 nextPieceNetwork[i] = nextPieceNetwork[i + 1];
             }
@@ -172,6 +173,8 @@ namespace TETR04o {
         }
         public void SpawnNewPiece()
         {
+            ProcessGarbagePush();
+
             currentPieceNetwork = nextPieceNetwork[0];
             currentPiece = pieces[currentPieceNetwork];
             gameField.SpawnPiece(positionSpawnPiece, currentPiece);
@@ -182,6 +185,11 @@ namespace TETR04o {
                 GameOver();
             }
             RequestSerialization();
+        }
+        public void ProcessGarbagePush() {
+            if (indexCombo == 0) {
+                garbageMeter.PushToField();
+            }
         }
         void ShowNewPieceNetwork() {
             if (currentPiece != null)
@@ -221,6 +229,15 @@ namespace TETR04o {
             if(gameField.countLinesCleared > 0) {
                 gameField.ProcessClearedLines();
             }
+        }
+        public void AddCombo() {
+            if (indexCombo < 255) {
+                indexCombo++;
+            }
+            
+        }
+        public void ResetCombo() {
+            indexCombo = 0;
         }
 
         [NetworkCallable] public void UpdatePiece() {

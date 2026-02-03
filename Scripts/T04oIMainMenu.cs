@@ -9,6 +9,7 @@ namespace TETR04o {
     {
         public T04oMain main;
         public TextMeshPro textMeshStartGame;
+        public TextMeshPro textMeshMultiplayer;
         public TextMeshPro textMeshLevelSpeed;
         public TextMeshPro textMeshLevelSpeedNumber;
         public TextMeshPro textMeshRepeatingSpeedKeys;
@@ -26,12 +27,12 @@ namespace TETR04o {
         }
 
         public void Left() {
-            if (indexMenu == 1) {
+            if (indexMenu == 2) {
                 if (indexLevelSpeed == 1) return;
                 indexLevelSpeed--;
                 SetNumberLevelSpeed();
             }
-            if (indexMenu == 2) {
+            if (indexMenu == 3) {
                 if (indexSpeedKeys == 0) return;
                 indexSpeedKeys--;
                 SetNumberSpeedKeys();
@@ -40,12 +41,12 @@ namespace TETR04o {
         }
 
         public void Right() {
-            if (indexMenu == 1) {
+            if (indexMenu == 2) {
                 if (indexLevelSpeed == 20) return;
                 indexLevelSpeed++;
                 SetNumberLevelSpeed();
             }
-            if (indexMenu == 2) {
+            if (indexMenu == 3) {
                 if (indexSpeedKeys == 100) return;
                 indexSpeedKeys++;
                 SetNumberSpeedKeys();
@@ -67,7 +68,7 @@ namespace TETR04o {
         }
 
         public void Down() {
-            if (indexMenu == 2) return;
+            if (indexMenu == 3) return;
             indexMenu++;
             ChangeColorText(indexMenu);
             RequestSerialization();
@@ -76,11 +77,15 @@ namespace TETR04o {
             if (indexMenu == 0) {
                 main.StartTheGame();
             }
+            if (indexMenu == 1) {
+                main.JoinMultiplayer();
+            }
             RequestSerialization();
         }
 
         public void ChangeColorText(int i) {
             textMeshStartGame.color = colorRegular;
+            textMeshMultiplayer.color = colorRegular;
             textMeshLevelSpeed.color = colorRegular;
             textMeshLevelSpeedNumber.color = colorRegular;
             textMeshRepeatingSpeedKeys.color = colorRegular;
@@ -91,10 +96,13 @@ namespace TETR04o {
                     textMeshStartGame.color = colorIn;
                     break;
                 case 1:
+                    textMeshMultiplayer.color = colorIn;
+                    break;
+                case 2:
                     textMeshLevelSpeed.color = colorIn;
                     textMeshLevelSpeedNumber.color = colorChanging;
                     break;
-                case 2:
+                case 3:
                     textMeshRepeatingSpeedKeys.color = colorIn;
                     textMeshRepeatingSpeedKeysNumber.color = colorChanging;
                     break;

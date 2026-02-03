@@ -14,15 +14,18 @@ namespace TETR04o {
         public T04oControlsAll controlsAll;
         public T04oScoring scoring;
         public T04oHotkeys hotkeys;
+        public T04oMultiplayer multiplayer;
+        public T04oIMultiplayer multiplayerMenu;
         public T04oResizerButton resizerButton;
         [HideInInspector] public T04oControls controls;
-        [UdonSynced] byte isGameStarted = 0;
+        [UdonSynced] [HideInInspector] public byte isGameStarted = 0;
         [UdonSynced] byte isUsing = 0;
         [UdonSynced] byte playerID = 0;
         public void ChangeToGame() {
             mainMenu.gameObject.SetActive(false);
             gameProcess.gameProcessInterface.SetActive(true);
             controls = controlsGame;
+            multiplayerMenu.HideMenu();
             controlsAll.SetSpeedRepeatingKeys(mainMenu.indexSpeedKeys);
             gameProcess.ChangeLevelSpeed(mainMenu.indexLevelSpeed);
             controlsAll.DisableRepeatingUpKey(true);
@@ -30,6 +33,14 @@ namespace TETR04o {
         public void ChangeToInterface() {
             gameProcess.gameProcessInterface.SetActive(false);
             mainMenu.gameObject.SetActive(true);
+            multiplayerMenu.HideMenu();
+            controls = controlsInterface;
+            controlsAll.DisableRepeatingUpKey(false);
+        }
+        public void ChangeToInterfaceMultiplayer() {
+            gameProcess.gameProcessInterface.SetActive(false);
+            mainMenu.gameObject.SetActive(false);
+            multiplayerMenu.ShowMenu();
             controls = controlsInterface;
             controlsAll.DisableRepeatingUpKey(false);
         }
@@ -63,9 +74,26 @@ namespace TETR04o {
             gameProcess.StartGame();
             RequestSerialization();
         }
-        public void GameOver() {
+        public void JoinMultiplayer() {
+            isGameStarted = 2;
+            multiplayerMenu.JoinGame();
+            ChangeToInterfaceMultiplayer();
+            RequestSerialization();
+        }
+        public void LeaveMultiplayer() {
             isGameStarted = 0;
+            multiplayerMenu.LeaveFromGame();
             ChangeToInterface();
+            RequestSerialization();
+        }
+        public void GameOver() {
+            if (multiplayerMenu.isPlayerJoined) {
+                isGameStarted = 2;
+                ChangeToInterfaceMultiplayer();
+            } else {
+                isGameStarted = 0;
+                ChangeToInterface();
+            }
             RequestSerialization();
         }
         void Start()
@@ -92,6 +120,8 @@ namespace TETR04o {
             Networking.SetOwner(player, gameObject);
             Networking.SetOwner(player, gameProcess.gameObject);
             Networking.SetOwner(player, gameProcess.gameField.gameObject);
+            Networking.SetOwner(player, gameProcess.garbageMeter.gameObject);
+            Networking.SetOwner(player, gameProcess.garbageSender.gameObject);
             Networking.SetOwner(player, mainMenu.gameObject);
             Networking.SetOwner(player, scoring.gameObject);
             Networking.SetOwner(player, resizerButton.gameObject);
@@ -129,6 +159,9 @@ namespace TETR04o {
         public override void OnDeserialization()
         {
             base.OnDeserialization();
+            if (isGameStarted == 2) {
+                ChangeToInterfaceMultiplayer();
+            }
             if (isGameStarted == 1) {
                 ChangeToGame();
                 gameProcess.TurnItOn();

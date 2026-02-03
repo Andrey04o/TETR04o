@@ -3,6 +3,10 @@ using UnityEngine;
 using UdonSharp;
 using VRC.SDK3.UdonNetworkCalling;
 using VRC.SDKBase;
+#if !COMPILER_UDONSHARP && UNITY_EDITOR
+using UnityEditor;
+using UdonSharpEditor;
+#endif
 namespace TETR04o {
 [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     public class T04oGameField : UdonSharpBehaviour
@@ -73,7 +77,12 @@ namespace TETR04o {
         }
 
         public void ProcessClearedLines() {
-            if (countLinesCleared == 0) return;
+            if (countLinesCleared == 0) {
+                gameProcess.ResetCombo();
+                return;
+            }
+            gameProcess.AddCombo();
+            gameProcess.garbageSender.SendGarbage((ClearType)countLinesCleared);
             gameProcess.AddClearedLine(countLinesCleared);
             
             // Sort cleared line indices in ascending order
@@ -125,6 +134,83 @@ namespace TETR04o {
 
             CalcEmptyLinesHash();
             RequestSerialization();
+        }
+
+        public void AddGarbageLines(int garbageCount, int emptyPosition) {
+            if (garbageCount <= 0 || garbageCount >= lines.Length) return;
+
+            // Check if the top lines (that will be pushed up) are clear
+            // If any of them have blocks, trigger game over
+            for (int i = 0; i < garbageCount; i++) {
+                T04oLine topLine = GetLineAtVisualPosition(i);
+                if (topLine != null && topLine.cellsFilled > 0) {
+                    gameProcess.GameOver();
+                    return;
+                }
+            }
+
+            // Build new index mapping - reverse of ProcessClearedLines
+            byte[] newLineIndexes = new byte[lines.Length];
+            
+            // First, move existing lines up by garbageCount positions
+            for (int visualPos = 0; visualPos < lines.Length - garbageCount; visualPos++) {
+                byte lineArrayIdx = lineIndexes[visualPos + garbageCount];
+                newLineIndexes[visualPos] = lineArrayIdx;
+                lines[lineArrayIdx].lineIndex = visualPos;
+                
+                float yPos = -visualPos * (cellSize + padding);
+                lines[lineArrayIdx].transform.localPosition = new Vector3(0, yPos, 0);
+            }
+
+            // Then, place the bottom lines (which become garbage) at the bottom positions
+            for (int i = 0; i < garbageCount; i++) {
+                int bottomVisualPos = lines.Length - garbageCount + i;
+                byte lineArrayIdx = lineIndexes[i];
+                newLineIndexes[bottomVisualPos] = lineArrayIdx;
+                lines[lineArrayIdx].lineIndex = bottomVisualPos;
+                
+                float yPos = -bottomVisualPos * (cellSize + padding);
+                lines[lineArrayIdx].transform.localPosition = new Vector3(0, yPos, 0);
+                
+                // Fill the garbage line with random blocks (leaving one gap for strategy)
+                FillGarbageLine(lines[lineArrayIdx], emptyPosition);
+            }
+
+            // Update the main index array
+            System.Array.Copy(newLineIndexes, lineIndexes, lines.Length);
+
+            CalcEmptyLinesHash();
+            RequestSerialization();
+        }
+
+        private void FillGarbageLine(T04oLine line, int emptyPosition) {
+            // Clear the line first
+            line.Clear();
+            
+            // Choose a random position to leave empty (0-9)
+            //int emptyPosition = UnityEngine.Random.Range(0, line.cells.Length);
+            
+            // Fill all positions except the empty one with random colors (1-7)
+            for (int i = 0; i < line.cells.Length; i++) {
+                if (i != emptyPosition) {
+                    //int randomColor = UnityEngine.Random.Range(1, 8); // Colors 1-7
+                    int randomColor = 9; // Garbage color 
+                    line.cellsColors[i] = randomColor;
+                    line.cells[i].SetCubeNetwork(randomColor);
+                    line.cellsFilled++;
+                }
+            }
+            
+            // Update network data
+            line.EncodeColorsNetwork();
+            line.RequestSerialization();
+        }
+
+        // Public method to add garbage lines (can be called from multiplayer or other systems)
+        public void ReceiveGarbageAttack(int lineCount) {
+            if (!gameProcess.isGameRunning) return;
+            int emptyPosition = UnityEngine.Random.Range(0, lines[0].cells.Length);
+            AddGarbageLines(lineCount, emptyPosition);
         }
 
         byte emptyLinesHashLocal;
@@ -186,4 +272,28 @@ namespace TETR04o {
 
 
     }
+    #if !COMPILER_UDONSHARP && UNITY_EDITOR
+    [CustomEditor(typeof(T04oGameField))]
+    public class T04oGameFieldEditor : Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            if (UdonSharpGUI.DrawDefaultUdonSharpBehaviourHeader(target)) return;
+            DrawDefaultInspector();
+
+            T04oGameField myTarget = (T04oGameField)target;
+
+            EditorGUILayout.Space();
+            if (GUILayout.Button("Spawn 1 garbage line"))
+            {
+                myTarget.ReceiveGarbageAttack(1);
+            }
+
+            if (GUILayout.Button("Spawn 4 garbage lines"))
+            {
+                myTarget.ReceiveGarbageAttack(4);
+            }
+        }
+    }
+    #endif
 }
