@@ -71,8 +71,8 @@ namespace TETR04o {
         }
         void ProcessGarbageMeter() {
             indexGarbage = garbageMeter.DecreaseGarbageAttack(indexGarbage);
-            
-            main.multiplayer.GetRandomPlayerOpponent(main.gameProcess.id).garbageMeter.ReceiveGarbageAttackRequest(indexGarbage);
+            if (main.multiplayerMenu.isPlayerJoined)
+                main.multiplayer.GetRandomPlayerOpponent(main.gameProcess.id).garbageMeter.ReceiveGarbageAttackRequest(indexGarbage);
 
             ClearGarbage();
         }

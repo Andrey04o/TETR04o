@@ -123,6 +123,7 @@ namespace TETR04o {
             Networking.SetOwner(player, gameProcess.garbageMeter.gameObject);
             Networking.SetOwner(player, gameProcess.garbageSender.gameObject);
             Networking.SetOwner(player, mainMenu.gameObject);
+            Networking.SetOwner(player, multiplayerMenu.gameObject);
             Networking.SetOwner(player, scoring.gameObject);
             Networking.SetOwner(player, resizerButton.gameObject);
             foreach (T04oLine line in gameProcess.gameField.lines) {

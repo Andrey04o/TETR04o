@@ -279,15 +279,24 @@ namespace TETR04o {
             T04oHotkeys myTarget = (T04oHotkeys)target;
 
             EditorGUILayout.Space();
-
-            if (GUILayout.Button("Get all keys"))
+            if (GUILayout.Button("Set hotkeys reference to all arcade machines"))
             {
-                myTarget.indexKeyCodes = (int[])Enum.GetValues(typeof(KeyCode));
-                myTarget.MarkDirty();
+                T04oMain[] mains = FindObjectsByType<T04oMain>(FindObjectsSortMode.None);
+                foreach (T04oMain main in mains) {
+                    main.hotkeys = myTarget;
+                    EditorUtility.SetDirty(main);
+                }
+                //EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
             }
             if (GUILayout.Button("Set default keys"))
             {
                 myTarget.SetDefault();
+                myTarget.MarkDirty();
+            }
+            EditorGUILayout.LabelField("For development");
+            if (GUILayout.Button("Get all enum key list"))
+            {
+                myTarget.indexKeyCodes = (int[])Enum.GetValues(typeof(KeyCode));
                 myTarget.MarkDirty();
             }
         }

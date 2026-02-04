@@ -2,10 +2,8 @@ using UnityEngine;
 using UdonSharp;
 using System;
 using System.Collections;
-using UnityEditor.SceneManagement;
 using VRC.SDK3.UdonNetworkCalling;
 using VRC.Udon.Common.Interfaces;
-using YamlDotNet.Core.Tokens;
 
 #if !COMPILER_UDONSHARP && UNITY_EDITOR
 using UnityEditor;
@@ -17,9 +15,12 @@ namespace TETR04o {
     {
         public T04oGameProcess[] machines;
         public T04oMultiplayerTimerStart timerStart;
-        [UdonSynced] public byte[] players; 
+        [UdonSynced] public byte[] players;
         [UdonSynced] public byte count;
+        [UdonSynced] public byte[] playersAlive;
+        [UdonSynced] public byte countAlive;
         [UdonSynced] public byte indexReady;
+        [UdonSynced] public bool isInProcess = false;
         //[UdonSynced] public byte isGameRunning;
         public void AddPlayerRequest(byte playerId) {
             SendCustomNetworkEvent(NetworkEventTarget.Owner, nameof(AddPlayer), playerId);
@@ -116,7 +117,8 @@ namespace TETR04o {
             StartTimerStart();
         }
         void StartTimerStart() {
-            if (count < 1) {
+            if (isInProcess == true) return;
+            if (count <= 1) {
                 timerStart.StopTimer();
                 return;
             }
@@ -140,10 +142,19 @@ namespace TETR04o {
         }
         public void StartMultiplayerGame() {
             //isGameRunning = 1;
+            CopyArrayIndexesToPlayersAlive();
+            countAlive = count;
             for (int i = 0; i < count; i++) {
                 machines[players[i]].main.multiplayerMenu.StartGameRequest();
             }
-            //RequestSerialization();
+            ShowPlayerCountAlive();
+            isInProcess = true;
+            RequestSerialization();
+        }
+        void CopyArrayIndexesToPlayersAlive() {
+            for (int i = 0; i < count; i++) {
+                playersAlive[i] = players[i];
+            }
         }
 
         public void ShowCountsPlayer() {
@@ -152,23 +163,72 @@ namespace TETR04o {
                 machines[players[i]].main.multiplayerMenu.SetPlayerCountReady(count);
             }
         }
-
-        public override void OnDeserialization()
-        {
+        public void PlayerDiedRequest(byte myId) {
+            SendCustomNetworkEvent(NetworkEventTarget.Owner, nameof(PlayerDied), myId);
+        }
+        [NetworkCallable] public void PlayerDied(byte myId) {
+            if (myId == byte.MaxValue)
+            {
+                Debug.LogWarning("Cannot remove playerAlive with ID 255 (reserved for 'no player')");
+                return;
+            }
+            
+            if (playersAlive == null)
+            {
+                Debug.LogWarning("PlayersAlive array is not initialized");
+                return;
+            }
+            
+            // Find and remove the player
+            for (int i = 0; i < playersAlive.Length; i++)
+            {
+                if (playersAlive[i] == byte.MaxValue)
+                    break; // No more players to check
+                    
+                if (playersAlive[i] == myId)
+                {
+                    playersAlive[i] = byte.MaxValue; // Set to "no player"
+                    Debug.Log($"Removed playerAlive {myId} from slot {i}");
+                    
+                    // Sort array to move zeros to the end
+                    Array.Sort((Array)playersAlive, 0, countAlive);
+                    countAlive--;
+                    ShowPlayerCountAlive();
+                    ProcessLastPlayer();
+                    RequestSerialization();
+                    return;
+                }
+            }
+        }
+        public void ShowPlayerCountAlive() {
+            for (int i = 0; i < countAlive; i++) {
+                machines[playersAlive[i]].playersAlive.SetValue(countAlive);
+            }
+        }
+        public void ProcessLastPlayer() {
+            if (countAlive == 1) {
+                machines[playersAlive[0]].GameWinRequest();
+                isInProcess = false;
+                RequestSerialization();
+            }
+        }
+        public override void OnDeserialization() {
             base.OnDeserialization();
             ShowCountsPlayer();
             StartTimerStart();
-            
+            ShowPlayerCountAlive();
         }
         public T04oGameProcess GetRandomPlayerOpponent(byte myId) {
-            int randomNumber = UnityEngine.Random.Range(0, count);
+            if (countAlive == 1) return machines[myId];
+
+            int randomNumber = UnityEngine.Random.Range(0, countAlive);
             if (randomNumber == myId) {
                 if (randomNumber == 0) randomNumber += 1;
                 else if (randomNumber == count - 1) randomNumber -= 1;
                 else if (UnityEngine.Random.Range(0, 2) == 0) randomNumber -= 1;
                 else randomNumber += 1;
             }
-            return machines[players[randomNumber]];
+            return machines[playersAlive[randomNumber]];
         }
 
     }
@@ -197,6 +257,7 @@ namespace TETR04o {
                     EditorUtility.SetDirty(machine);
                 }
                 myTarget.players = new byte[myTarget.machines.Length];
+                myTarget.playersAlive = myTarget.players;
                 for(int i = 0; i < myTarget.players.Length; i++) {
                     myTarget.players[i] = byte.MaxValue;
                 }

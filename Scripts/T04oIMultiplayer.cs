@@ -19,6 +19,7 @@ namespace TETR04o {
         public TextMeshPro textMeshCountPlayersCount;
         public TextMeshPro textMeshStartingIn;
         public TextMeshPro textMeshStartingInCount;
+        public TextMeshPro textMeshCurrentPlace;
         [UdonSynced] public byte indexMenu = 0;
         [UdonSynced] public byte indexReady = 0;
         [UdonSynced] public byte indexPlayers = 0;
@@ -27,6 +28,7 @@ namespace TETR04o {
         public Color colorRegular;
         public Color colorChanging;
         [UdonSynced] public bool isPlayerJoined = false;
+        [UdonSynced] public byte indexVictor = 0;
 
         void Start() {
             ChangeColorText(indexMenu);
@@ -48,10 +50,10 @@ namespace TETR04o {
             SendReady();
             //RequestSerialization();
         }
-        void SetReady(byte value) {
+        public void SetReady(byte value) {
             indexReady = value;
-            SendReady();
             ShowReady();
+            SendReady();
         }
         void SendReady() {
             if (indexReady == 0) {
@@ -119,17 +121,24 @@ namespace TETR04o {
 
         public void HideMenu() {
             menuHide = 1;
-            SetReady(0);
             inteface.SetActive(false);
         }
         public void LeaveFromGame() {
+            indexVictor = 0;
             isPlayerJoined = false;
+            if (indexReady == 1) {
+                indexReady = 0;
+                SendReady();
+                ShowReady();
+            }
             main.multiplayer.RemovePlayerRequest(main.gameProcess.id);
+            ShowPlaceText();
             RequestSerialization();
         }
         public void JoinGame() {
             isPlayerJoined = true;
             main.multiplayer.AddPlayerRequest(main.gameProcess.id);
+            ShowReady();
             RequestSerialization();
         }
 
@@ -151,16 +160,49 @@ namespace TETR04o {
             ShowVisibility();
         }
         public void StartGameRequest() {
-            SendCustomNetworkEvent(NetworkEventTarget.Owner, nameof(StartGame));
+            NetworkCalling.SendCustomNetworkEvent((IUdonEventReceiver)this, NetworkEventTarget.Owner, nameof(StartGame));
+            //SendCustomNetworkEvent(NetworkEventTarget.Owner, nameof(StartGame));
         }
         [NetworkCallable] public void StartGame() {
             main.StartTheGame();
+        }
+        public void SetVictorPlace(byte value) {
+            indexVictor = value;
+            ShowPlaceText();
+        }
+        public void ShowPlaceText() {
+            textMeshCurrentPlace.gameObject.SetActive(true);
+            if (indexVictor == 0) {
+                textMeshCurrentPlace.gameObject.SetActive(false);
+                return;
+            }
+            if (indexVictor == 1) {
+                textMeshCurrentPlace.text = "1st place";
+                textMeshCurrentPlace.color = Color.green;
+                return;
+            }
+            if (indexVictor == 2) {
+                textMeshCurrentPlace.text = "2nd place";
+                textMeshCurrentPlace.color = Color.yellow;
+                return;
+            }
+            if (indexVictor == 3) {
+                textMeshCurrentPlace.text = "3rd place";
+                textMeshCurrentPlace.color = Color.yellow;
+                return;
+            }
+            if (indexVictor > 3) {
+                textMeshCurrentPlace.text = indexVictor + "th place";
+                textMeshCurrentPlace.color = Color.white;
+                return;
+            }
         }
 
         public override void OnDeserialization()
         {
             base.OnDeserialization();
             NetworkStuff();
+            ShowPlaceText();
             /*
             if (Networking.IsOwner(main.multiplayer.gameObject)) {
                 if (indexReady == 0) {

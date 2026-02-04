@@ -4,6 +4,8 @@ using VRC.SDKBase;
 using VRC.SDK3.UdonNetworkCalling;
 using VRC;
 using UnityEngine.UIElements;
+using VRC.Udon.Common.Interfaces;
+
 #if !COMPILER_UDONSHARP && UNITY_EDITOR
 using UnityEditor;
 using UdonSharpEditor;
@@ -24,6 +26,7 @@ namespace TETR04o {
         public T04oGarbageSender garbageSender;
         public T04oMain main;
         public T04oScoring scoring;
+        public T04oPlayersAlive playersAlive;
         private T04oPiece nextPiece;
         public float speedFall = 1.2f;
         [HideInInspector] public float tickSpeed = 1f;
@@ -53,6 +56,7 @@ namespace TETR04o {
             //InitIndexes();
             isGameRunning = true;
             gameObject.SetActive(true);
+            playersAlive.Show(main.multiplayerMenu.isPlayerJoined);
             ChangeLevelSpeed(indexLevelSpeed);
         }
 
@@ -80,6 +84,7 @@ namespace TETR04o {
             isGameRunning = true;
             //gameObject.SetActive(true);
             gameProcessInterface.SetActive(true);
+            playersAlive.Show(main.multiplayerMenu.isPlayerJoined);
             FillNextPieces();
             //ChooseNextPiece();
             SpawnNewPiece();
@@ -104,11 +109,27 @@ namespace TETR04o {
         }
 
         public void GameOver() {
+            if (main.multiplayerMenu.isPlayerJoined) {
+                main.multiplayerMenu.SetVictorPlace(main.multiplayer.countAlive);
+                main.multiplayer.PlayerDiedRequest(id);
+                main.multiplayerMenu.SetReady(0);
+            }
             isGameRunning = false;
             gameProcessUpdate.gameObject.SetActive(false);
             gameProcessInterface.SetActive(false);
             main.GameOver();
             //gameObject.SetActive(false);
+        }
+        public void GameWinRequest() {
+            NetworkCalling.SendCustomNetworkEvent((IUdonEventReceiver)this, NetworkEventTarget.Owner, nameof(GameWin));
+        }
+        [NetworkCallable] public void GameWin() {
+            main.multiplayerMenu.SetVictorPlace(1);
+            main.multiplayerMenu.SetReady(0);
+            isGameRunning = false;
+            gameProcessUpdate.gameObject.SetActive(false);
+            gameProcessInterface.SetActive(false);
+            main.GameOver();
         }
 
         void FillNextPieces() {
