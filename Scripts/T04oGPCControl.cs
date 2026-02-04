@@ -4,6 +4,7 @@ using UnityEngine;
 using UdonSharp;
 using VRC.Udon.Common;
 namespace TETR04o {
+    [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     public class T04oGPCControl : UdonSharpBehaviour
     {
         public T04oMain main;
@@ -26,7 +27,9 @@ namespace TETR04o {
             HandleInput();
             RepeatKeys();
         }
+        
         void RepeatKeys() {
+            if (main.controls.isInterface == false) return;
             if (isLeftPressed || isRightPressed || isUpPressed || isDownPressed) {
                 timer += Time.deltaTime;
                 if (timer < timeRepeatKey) {
@@ -49,6 +52,7 @@ namespace TETR04o {
                 timer = 0;
             }
         }
+        
 
         private void HandleInput()
         {
@@ -101,52 +105,49 @@ namespace TETR04o {
             } else {
                 if (T04oHotkeys.CheckButtonDown(main.hotkeys.indexMoveLeft))
                 {
-                    isLeftPressed = true;
-                    main.controls.Left();
+                    main.controlsHandling.PressLeft();
                 }
                 if (T04oHotkeys.CheckButtonDown(main.hotkeys.indexMoveRight))
                 {
-                    isRightPressed = true;
-                    main.controls.Right();
+                    main.controlsHandling.PressRight();
                 }
 
                 if (T04oHotkeys.CheckButtonDown(main.hotkeys.indexSoftDrops))
                 {
-                    isDownPressed = true;
-                    main.controls.Down();
+                    main.controlsHandling.PressSoftDrop();
                 }
 
                 if (T04oHotkeys.CheckButtonUp(main.hotkeys.indexMoveLeft))
                 {
-                    isLeftPressed = false;
+                    main.controlsHandling.UnpressLeft();
                 }
 
                 if (T04oHotkeys.CheckButtonUp(main.hotkeys.indexMoveRight))
                 {
-                    isRightPressed = false;
+                    main.controlsHandling.UnpressRight();
                 }
 
                 if (T04oHotkeys.CheckButtonUp(main.hotkeys.indexSoftDrops))
                 {
-                    isDownPressed = false;
+                    main.controlsHandling.UnpressSoftDrop();
                 }
 
 
                 if (T04oHotkeys.CheckButtonDown(main.hotkeys.indexRotateLefts))
                 {
-                    main.controls.RotateLeft();
+                    main.controlsHandling.PressLeftRotate();
                 }
 
                 if (T04oHotkeys.CheckButtonDown(main.hotkeys.indexRotateRights))
                 {
-                    main.controls.RotateRight();
+                    main.controlsHandling.PressRightRotate();
                 }
 
                 if (T04oHotkeys.CheckButtonDown(main.hotkeys.indexHolds)) {
-                    main.controls.Respawn();
+                    main.controlsHandling.PressHold();
                 }
                 if (T04oHotkeys.CheckButtonDown(main.hotkeys.indexHardDrops)) {
-                    main.controls.SpaceBar();
+                    main.controlsHandling.PressHardDrop();
                 }
             }
             
@@ -161,6 +162,9 @@ namespace TETR04o {
         }
 
         public void UnholdButtons() {
+            main.controlsHandling.UnpressSoftDrop();
+            main.controlsHandling.UnpressRight();
+            main.controlsHandling.UnpressLeft();
             isDownPressed = false;
             isLeftPressed = false;
             isRightPressed = false;

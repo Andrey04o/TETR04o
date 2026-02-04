@@ -11,7 +11,6 @@ namespace TETR04o {
         override public void Up() {
             main.SetOwner();
             main.gameProcess.currentPiece.HardDrop();
-            main.gameProcess.ResetTimer();
         }
         override public void Down() {
             main.SetOwner();
@@ -20,22 +19,22 @@ namespace TETR04o {
         override public void Left() {
             main.SetOwner();
             main.gameProcess.currentPiece.Move(Vector2Int.left);
-            main.gameProcess.ResetTimer();
+            main.gameProcess.ResetLockDelay();
         }
         override public void Right() {
             main.SetOwner();
             main.gameProcess.currentPiece.Move(Vector2Int.right);
-            main.gameProcess.ResetTimer();
+            main.gameProcess.ResetLockDelay();
         }
         override public void RotateLeft() {
             main.SetOwner();
             main.gameProcess.currentPiece.Rotate(false);
-            main.gameProcess.ResetTimer();
+            main.gameProcess.ResetLockDelay();
         }
         override public void RotateRight() {
             main.SetOwner();
             main.gameProcess.currentPiece.Rotate(true);
-            main.gameProcess.ResetTimer();
+            main.gameProcess.ResetLockDelay();
         }
         override public void Respawn() {
             main.SetOwner();
@@ -53,7 +52,6 @@ namespace TETR04o {
         public override void SpaceBar() {
             main.SetOwner();
             main.gameProcess.currentPiece.HardDrop();
-            main.gameProcess.ResetTimer();
         }
     }
 }

@@ -275,9 +275,7 @@ namespace TETR04o {
         {
             if (UdonSharpGUI.DrawDefaultUdonSharpBehaviourHeader(target)) return;
             DrawDefaultInspector();
-
             T04oHotkeys myTarget = (T04oHotkeys)target;
-
             EditorGUILayout.Space();
             if (GUILayout.Button("Set hotkeys reference to all arcade machines"))
             {

@@ -14,12 +14,12 @@ namespace TETR04o {
             if (gameProcess.timer >= gameProcess.tickSpeed) {
                 gameProcess.timer = 0;
                 gameProcess.MovePieceDownGravity();
+                gameProcess.isFloor = !gameProcess.currentPiece.IsCanMove(Vector2Int.down);
             }
             if (gameProcess.isFloor) {
                 gameProcess.timerPlace += Time.deltaTime;
-                if (gameProcess.timerPlace >= gameProcess.tickSpeed) {
-                    gameProcess.timerPlace = 0;
-                    gameProcess.ResetTimer();
+                if (gameProcess.timerPlace >= gameProcess.lockDelay) {
+                    if (gameProcess.currentPiece.IsCanMove(Vector2Int.down)) return;
                     gameProcess.currentPiece.Place();
                     gameProcess.SpawnNewPiece();
                     gameProcess.CheckLinesCleared();

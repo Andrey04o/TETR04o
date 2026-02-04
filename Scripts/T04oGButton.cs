@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UdonSharp;
 namespace TETR04o {
+    [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     public class T04oGButton : UdonSharpBehaviour
     {
         public T04oMain main;
@@ -14,14 +15,18 @@ namespace TETR04o {
             base.Interact();
             main.SetOwnerIfNot();
             main.resizerButton.StartTheTimerIfSizeDifferent();
-            if (isRotateLeft) {
+            if (main.controls.isInterface) {
                 main.controls.RotateLeft();
+                return;
+            }
+            if (isRotateLeft) {
+                main.controlsHandling.PressLeftRotate();
             }
             if (isRotateRight) {
-                main.controls.RotateRight();
+                main.controlsHandling.PressRightRotate();
             }
             if (isButtonSwap) {
-                main.controls.Respawn();
+                main.controlsHandling.PressHold();
             }
         }
     }

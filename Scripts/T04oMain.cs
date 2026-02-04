@@ -14,6 +14,8 @@ namespace TETR04o {
         public T04oControlsAll controlsAll;
         public T04oScoring scoring;
         public T04oHotkeys hotkeys;
+        public T04oHandling handling;
+        public T04oControlsHandling controlsHandling;
         public T04oMultiplayer multiplayer;
         public T04oIMultiplayer multiplayerMenu;
         public T04oResizerButton resizerButton;

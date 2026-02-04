@@ -5,10 +5,6 @@ using UdonSharp;
 using UnityEngine.UI;
 using VRC.SDKBase;
 using VRC.SDK3.Persistence;
-using YamlDotNet.Core.Tokens;
-
-
-
 #if !COMPILER_UDONSHARP && UNITY_EDITOR
 using UnityEditor;
 using UdonSharpEditor;
@@ -23,11 +19,11 @@ namespace TETR04o {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     public class T04oHandling : UdonSharpBehaviour
     {
-        public string nameForSavePersistance = "T04o";
-        public Slider slider_arr;
-        public Slider slider_das;
-        public Slider slider_dcd;
-        public Slider slider_sdf;
+        public string nameForSavePersistance = "T04oH";
+        public T04oSliderSetting slider_arr;
+        public T04oSliderSetting slider_das;
+        public T04oSliderSetting slider_dcd;
+        public T04oSliderSetting slider_sdf;
         public float arr; // automatic repeat rate
         public float das; // delayet auto shift
         public float dcd; // DAS cut delay (after rotating, dropping piece)
@@ -40,6 +36,8 @@ namespace TETR04o {
             }
             if (PlayerData.HasKey(player, nameForSavePersistance + HandlingType.arr.ToString())) {
                 LoadControls(player);
+            } else {
+                SetDefault();
             }
             ShowValues();
         }
@@ -96,4 +94,25 @@ namespace TETR04o {
             ShowValues();
         }
     }
+    #if !COMPILER_UDONSHARP && UNITY_EDITOR
+    [CustomEditor(typeof(T04oHandling))]
+    public class T04oHandlingEditor : Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            if (UdonSharpGUI.DrawDefaultUdonSharpBehaviourHeader(target)) return;
+            DrawDefaultInspector();
+            T04oHandling myTarget = (T04oHandling)target;
+            EditorGUILayout.Space();
+            if (GUILayout.Button("Set handling reference to all arcade machines"))
+            {
+                T04oMain[] mains = FindObjectsByType<T04oMain>(FindObjectsSortMode.None);
+                foreach (T04oMain main in mains) {
+                    main.handling = myTarget;
+                    EditorUtility.SetDirty(main);
+                }
+            }
+        }
+    }
+    #endif
 }

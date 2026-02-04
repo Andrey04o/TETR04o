@@ -42,6 +42,10 @@ namespace TETR04o {
             // Find first empty slot (ID = 0)
             for (int i = 0; i < players.Length; i++)
             {
+                if (players[i] == playerId) {
+                    Debug.LogWarning($"Player already exist {playerId}");
+                    return;
+                }
                 if (players[i] == byte.MaxValue)
                 {
                     players[i] = playerId;

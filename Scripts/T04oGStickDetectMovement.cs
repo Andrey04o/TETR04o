@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UdonSharp;
 namespace TETR04o {
+    [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     public class T04oGStickDetectMovement : UdonSharpBehaviour
     {
         public T04oGStick stick;
@@ -32,6 +33,7 @@ namespace TETR04o {
             RepeatKeys();
         }
         void RepeatKeys() {
+            if (stick.main.controls.isInterface == false) return;
             if (isLeftPressed || isRightPressed || isUpPressed || isDownPressed) {
                 timer += Time.deltaTime;
                 if (timer < timeRepeatKey) {
@@ -72,6 +74,10 @@ namespace TETR04o {
             
             // Only invoke if within radius
             if (distance < invokeRadius) {
+                if(isLeftPressed) stick.UnLeft();
+                if(isRightPressed) stick.UnRight();
+                if(isUpPressed) stick.UnUp();
+                if(isDownPressed) stick.UnDown();
                 isLeftPressed = false;
                 isRightPressed = false;
                 isUpPressed = false;
@@ -99,10 +105,12 @@ namespace TETR04o {
             {
                 if (forwardDot > 0) {
                     if (isUpPressed == false) stick.Up();
+                    stick.UnDown();
                     isUpPressed = true;
                     isDownPressed = false;
                 } else {
                     if (isDownPressed == false) stick.Down();
+                    stick.UnUp();
                     isDownPressed = true;
                     isUpPressed = false;
                 }
@@ -112,10 +120,12 @@ namespace TETR04o {
             {
                 if (rightDot > 0) {
                     if (isRightPressed == false) stick.Right();
+                    stick.UnLeft();
                     isRightPressed = true;
                     isLeftPressed = false;
                 } else {
                     if (isLeftPressed == false) stick.Left();
+                    stick.UnRight();
                     isLeftPressed = true;
                     isRightPressed = false;
                 }

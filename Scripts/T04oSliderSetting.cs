@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class T04oSliderSetting : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
+using UnityEngine.UI;
+using UdonSharp;
+using TMPro;
+namespace TETR04o {
+    [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
+    public class T04oSliderSetting : UdonSharpBehaviour
     {
-        
-    }
+        public T04oHandling handling;
+        public HandlingType type;
+        public Slider slider;
+        public TextMeshProUGUI textMeshValue;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void SetValueWithoutNotify(float value) {
+            slider.SetValueWithoutNotify(value);
+            textMeshValue.text = value + "";
+        }
+        public void SetValue() {
+            handling.SetValue(type, slider.value);
+            textMeshValue.text = slider.value + "";
+        }
     }
 }

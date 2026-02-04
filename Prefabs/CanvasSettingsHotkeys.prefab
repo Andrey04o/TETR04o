@@ -564,7 +564,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &6514256188867400368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -597,7 +597,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &512345566705544086
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1052,6 +1052,81 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &7368913427467236872
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5169721852571126361}
+  - component: {fileID: 663922229406856408}
+  - component: {fileID: 3575723589500960896}
+  m_Layer: 5
+  m_Name: Image (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5169721852571126361
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7368913427467236872}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2960333062641808791}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 8.017548, y: 4.4999847}
+  m_SizeDelta: {x: 52.081665, y: 2.2013855}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &663922229406856408
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7368913427467236872}
+  m_CullTransparentMesh: 1
+--- !u!114 &3575723589500960896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7368913427467236872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.14901961, g: 0.15686275, b: 0.15294118, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 8082cfbed0d12e043addae83d3e2edf6, type: 3}
+  m_Type: 2
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 4
 --- !u!1 &7656028040596199439
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,7 +1137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2960333062641808791}
   m_Layer: 5
-  m_Name: KeyBoardSettings (1)
+  m_Name: HandlingSettings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1080,6 +1155,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5169721852571126361}
   - {fileID: 1206813128524170820}
   - {fileID: 3717257853583171276}
   - {fileID: 6987122959142681761}
@@ -1091,7 +1167,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8.017517, y: -4.5}
+  m_AnchoredPosition: {x: -8.017517, y: 495.49994}
   m_SizeDelta: {x: 599.56494, y: 479}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7835400122306180586
@@ -1372,7 +1448,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: SaveControls
+          m_StringArgument: SaveValues
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2438723188754714729
@@ -1859,6 +1935,17 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 22.05
       objectReference: {fileID: 0}
+    - target: {fileID: 7780116583943555023, guid: f2fe9504c035b2a45bd86d6ab07050dc,
+        type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7780116583943555023, guid: f2fe9504c035b2a45bd86d6ab07050dc,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 7780116583943555023, guid: f2fe9504c035b2a45bd86d6ab07050dc,
+        type: 3}
     - target: {fileID: 7810184555866356470, guid: f2fe9504c035b2a45bd86d6ab07050dc,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2359,6 +2446,17 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 22.05
       objectReference: {fileID: 0}
+    - target: {fileID: 7780116583943555023, guid: f2fe9504c035b2a45bd86d6ab07050dc,
+        type: 3}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7780116583943555023, guid: f2fe9504c035b2a45bd86d6ab07050dc,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 7780116583943555023, guid: f2fe9504c035b2a45bd86d6ab07050dc,
+        type: 3}
     - target: {fileID: 7810184555866356470, guid: f2fe9504c035b2a45bd86d6ab07050dc,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2503,6 +2601,17 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 22.05
       objectReference: {fileID: 0}
+    - target: {fileID: 7780116583943555023, guid: f2fe9504c035b2a45bd86d6ab07050dc,
+        type: 3}
+      propertyPath: type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7780116583943555023, guid: f2fe9504c035b2a45bd86d6ab07050dc,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 7780116583943555023, guid: f2fe9504c035b2a45bd86d6ab07050dc,
+        type: 3}
     - target: {fileID: 7810184555866356470, guid: f2fe9504c035b2a45bd86d6ab07050dc,
         type: 3}
       propertyPath: m_Pivot.x
@@ -4127,6 +4236,12 @@ PrefabInstance:
       propertyPath: m_text
       value: Automatic repeat rate (ARR)
       objectReference: {fileID: 0}
+    - target: {fileID: 7780116583943555023, guid: f2fe9504c035b2a45bd86d6ab07050dc,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 7780116583943555023, guid: f2fe9504c035b2a45bd86d6ab07050dc,
+        type: 3}
     - target: {fileID: 7810184555866356470, guid: f2fe9504c035b2a45bd86d6ab07050dc,
         type: 3}
       propertyPath: m_Pivot.x

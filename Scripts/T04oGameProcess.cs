@@ -29,6 +29,8 @@ namespace TETR04o {
         public T04oPlayersAlive playersAlive;
         private T04oPiece nextPiece;
         public float speedFall = 1.2f;
+        public float lockDelay = 0.5f;
+        public byte lockDelayTimesReset = 15;
         [HideInInspector] public float tickSpeed = 1f;
         [HideInInspector] public float timer = 0f;
         [HideInInspector] public float timerPlace;
@@ -46,6 +48,7 @@ namespace TETR04o {
         [UdonSynced] byte linesClearedToLevelUp = 1;
         [UdonSynced] byte countHold = 1;
         [UdonSynced] byte indexCombo = 0;
+        [UdonSynced] byte indexCountLockDelayReset = 0;
         public void StartUpdate() {
             gameProcessUpdate.gameObject.SetActive(true);
         }
@@ -180,7 +183,20 @@ namespace TETR04o {
                 gameFieldHold.DrawCells(pieces[currentPieceNetworkHold]);
             }
         }
+        public void ResetLockDelay() {
+            if (isFloor == false) return;
+            if (indexCountLockDelayReset >= lockDelayTimesReset) return;
+            isFloor = !currentPiece.IsCanMove(Vector2Int.down);
+            indexCountLockDelayReset++;
+            ResetTimer();
+            RequestSerialization();
+        }
+        public void ResetLockDelayCount() {
+            indexCountLockDelayReset = 0;
+        }
         public void SpawnNewPiece(byte piece) {
+            isFloor = false;
+            ResetLockDelayCount();
             ResetTimer();
             currentPiece.ClearCellGhost();
             currentPiece.Clear();
@@ -196,6 +212,9 @@ namespace TETR04o {
         {
             ProcessGarbagePush();
 
+            isFloor = false;
+            ResetLockDelayCount();
+            ResetTimer();
             currentPieceNetwork = nextPieceNetwork[0];
             currentPiece = pieces[currentPieceNetwork];
             gameField.SpawnPiece(positionSpawnPiece, currentPiece);
@@ -225,7 +244,6 @@ namespace TETR04o {
         public void ResetTimer() {
             timerPlace = 0;
             if (isFloor) timer = 0;
-            isFloor = false;
         }
 
         public void MovePieceDownGravity() {

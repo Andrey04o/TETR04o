@@ -157,11 +157,33 @@ namespace TETR04o {
             }
             return true;
         }
+        public bool MoveDontSync(Vector2Int direction, bool showGhost = true) {
+            if (IsCanMove(direction) == false) return false;
+            //position += direction;
+            position.x += direction.x;
+            position.y += -direction.y;
+            ChangePosition();
+            if (showGhost) {
+                HardDropGhost();
+            }
+            return true;
+        }
         public void SoftDrop() {
+            if (gameField.gameProcess.main.handling.sdf == 0) {
+                SonicDrop();
+                return;
+            }
             if (Move(Vector2Int.down) == false) return;
             gameField.gameProcess.scoring.AddSoftDrop();
         }
-        public bool MoveDontSync(Vector2Int direction)
+        public void SonicDrop() {
+            while (MoveDontSync(Vector2Int.down, false)) {
+                gameField.gameProcess.scoring.AddSoftDropDontSync();
+            }
+            gameField.gameProcess.scoring.SetScore();
+            SyncVariables();
+        }
+        public bool MoveDontSyncGhost(Vector2Int direction)
         {
             if (IsCanMoveGhost(direction) == false) return false;
             //position += direction;
@@ -281,6 +303,8 @@ namespace TETR04o {
             return true;
         }
         public bool CheckWallKick(Vector2Int direction) {
+            
+            Debug.Log(direction);
             foreach(T04oPieceLine pieceline in pieceLines) {
                 foreach(T04oPieceCell pieceCell in pieceline.pieceCells) {
                     if (pieceCell == null) continue;
@@ -333,16 +357,24 @@ namespace TETR04o {
             int counter = 0;
             foreach (Vector2Int dir in wallKick.GetDataWallKick(this, clockwise)) {
                 counter++;
+                Debug.Log(counter);
                 if (CheckWallKick(dir)) {
                     //Debug.Log("wallkick " + counter);
                     //position += dir;
                     position.x += dir.x;
                     position.y += -dir.y;
+                    if (counter > 1) {
+                        PerfomWallKick();
+                    }        
                     return true;
                 }
-            } 
+            }
+            
             //Debug.Log("cant wallkick");
             return false;
+        }
+        public void PerfomWallKick() {
+            gameField.gameProcess.main.controlsHandling.SetDcd();
         }
         public void HardDrop() {
             int countLines = 0;
@@ -363,7 +395,7 @@ namespace TETR04o {
                     pieceCell.cellGhost = pieceCell.cellLocation;
                 }
             }
-            while (MoveDontSync(Vector2Int.down)) {
+            while (MoveDontSyncGhost(Vector2Int.down)) {
 
             }
         }
@@ -448,6 +480,7 @@ namespace TETR04o {
             //gameField.ClearLinesIfPossible();
             gameField.ProcessClearedLines();
             isUsing = 0;
+            gameField.gameProcess.main.controlsHandling.SetDcd();
             SyncVariables();
         }
         public void Draw() {

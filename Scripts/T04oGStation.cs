@@ -22,6 +22,7 @@ namespace TETR04o {
             base.Interact();
             station.UseStation(Networking.LocalPlayer);
             pcControls.gameObject.SetActive(true);
+            pcControls.main.controlsHandling.SetEnable(true);
             textsMovement.gameObject.SetActive(true);
             touchControls.gameObject.SetActive(true);
             pcControls.main.controls.StartedUsing(Networking.LocalPlayer);
@@ -32,6 +33,7 @@ namespace TETR04o {
 
         public void Leave() {
             station.ExitStation(Networking.LocalPlayer);
+            pcControls.main.controlsHandling.SetEnable(false);
             pcControls.gameObject.SetActive(false);
             textsMovement.gameObject.SetActive(false);
             touchControls.gameObject.SetActive(false);

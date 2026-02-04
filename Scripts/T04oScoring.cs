@@ -16,6 +16,9 @@ namespace TETR04o {
             indexScore += 1;
             SetScore();
         }
+        public void AddSoftDropDontSync() {
+            indexScore += 1;
+        }
         public void AddHardDrop(int cells) {
             indexScore += cells * 2;
             SetScore();
@@ -28,7 +31,7 @@ namespace TETR04o {
             indexScore = 0;
             SetScore();
         }
-        void SetScore() {
+        public void SetScore() {
             if (indexScore > indexScoreMax) {
                 indexScoreMax = indexScore;
             }

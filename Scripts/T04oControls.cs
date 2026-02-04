@@ -2,6 +2,7 @@ using UnityEngine;
 using UdonSharp;
 using VRC.SDKBase;
 namespace TETR04o {
+    [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     public class T04oControls : UdonSharpBehaviour
     {
         public bool isInterface = false;

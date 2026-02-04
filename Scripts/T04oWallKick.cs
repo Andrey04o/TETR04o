@@ -7,6 +7,7 @@ using UnityEditor;
 #endif
 using UdonSharp;
 namespace TETR04o {
+    [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     public class T04oWallKick : UdonSharpBehaviour
     {
         // 0->R
@@ -47,10 +48,25 @@ namespace TETR04o {
             FixUpY(dataLto0);
             FixUpY(data0toL);
         }
+        public void InvertX() {
+            FixX(data0toR);
+            FixX(dataRto0);
+            FixX(dataRto2);
+            FixX(data2toR);
+            FixX(data2toL);
+            FixX(dataLto2);
+            FixX(dataLto0);
+            FixX(data0toL);
+        }
 
         void FixUpY(Vector2Int[] data) {
             for(int i = 0; i < data.Length; i++) {
                 data[i].y = data[i].y * -1;
+            }
+        }
+        void FixX(Vector2Int[] data) {
+            for(int i = 0; i < data.Length; i++) {
+                data[i].x = data[i].x * -1;
             }
         }
         public bool Move(T04oPiece piece, bool clockwise) {
@@ -104,7 +120,7 @@ namespace TETR04o {
         public override void OnInspectorGUI()
         {
             if (UdonSharpGUI.DrawDefaultUdonSharpBehaviourHeader(target)) return;
-            //DrawDefaultInspector();
+            DrawDefaultInspector();
 
             T04oWallKick myTarget = (T04oWallKick)target;
 
@@ -113,7 +129,12 @@ namespace TETR04o {
             if (GUILayout.Button("Invert Y"))
             {
                 myTarget.InvertY();
-                myTarget.MarkDirty();
+                EditorUtility.SetDirty(myTarget);
+            }
+            if (GUILayout.Button("Invert X"))
+            {
+                myTarget.InvertX();
+                EditorUtility.SetDirty(myTarget);
             }
         }
     }
