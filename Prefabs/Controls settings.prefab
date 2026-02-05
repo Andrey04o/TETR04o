@@ -552,6 +552,11 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 3750801280829236213, guid: 8239b82b44f9d584eba183a664324858,
         type: 3}
+      propertyPath: handling
+      value: 
+      objectReference: {fileID: 2485495293010856807}
+    - target: {fileID: 3750801280829236213, guid: 8239b82b44f9d584eba183a664324858,
+        type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 3750801280829236213, guid: 8239b82b44f9d584eba183a664324858,
@@ -810,6 +815,11 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 7452578843948204440, guid: 8239b82b44f9d584eba183a664324858,
         type: 3}
+      propertyPath: handling
+      value: 
+      objectReference: {fileID: 2485495293010856807}
+    - target: {fileID: 7452578843948204440, guid: 8239b82b44f9d584eba183a664324858,
+        type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 7452578843948204440, guid: 8239b82b44f9d584eba183a664324858,
@@ -881,6 +891,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8088664883740257858, guid: 8239b82b44f9d584eba183a664324858,
         type: 3}
+    - target: {fileID: 8168746267978183539, guid: 8239b82b44f9d584eba183a664324858,
+        type: 3}
+      propertyPath: handling
+      value: 
+      objectReference: {fileID: 2485495293010856807}
     - target: {fileID: 8168746267978183539, guid: 8239b82b44f9d584eba183a664324858,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -1021,6 +1036,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8492973421545952471, guid: 8239b82b44f9d584eba183a664324858,
         type: 3}
+    - target: {fileID: 8522121015590281911, guid: 8239b82b44f9d584eba183a664324858,
+        type: 3}
+      propertyPath: handling
+      value: 
+      objectReference: {fileID: 2485495293010856807}
     - target: {fileID: 8522121015590281911, guid: 8239b82b44f9d584eba183a664324858,
         type: 3}
       propertyPath: serializationData.Prefab
