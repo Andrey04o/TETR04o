@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: T04oGarbageMeterCell
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: b3f5d1b222a66654a891aba2fe8e2dbb,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: bd72cf3845796ff4f87d189dd4e9e315,
     type: 2}
   udonAssembly: 
   assemblyError: 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: T04oResizerButton
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: bc9571005895cc8459f896a3c11dfa8e,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 830d4ef60ba4be849bff526433940fc0,
     type: 2}
   udonAssembly: 
   assemblyError: 

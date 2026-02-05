@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: T04oPlayersAlive
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 6c4293d67fe988a449c89eb2f3ed5ff8,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 7508f2b83d696214dbd8a4ae64c4e43a,
     type: 2}
   udonAssembly: 
   assemblyError: 
