@@ -13,13 +13,15 @@ namespace TETR04o {
         public GameObject vrSettings;
         void Start()
         {
-            vrSettings.SetActive(false);
-            pcSettings.SetActive(false);
             if (Networking.LocalPlayer.IsUserInVR()) {
-                vrSettings.SetActive(true);
+                ShowKeyboardSettings(false);
             } else {
-                pcSettings.SetActive(true);
+                ShowKeyboardSettings(true);
             }
+        }
+        public void ShowKeyboardSettings(bool value) {
+            vrSettings.SetActive(!value);
+            pcSettings.SetActive(value);
         }
 
     }

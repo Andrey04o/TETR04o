@@ -68,7 +68,7 @@ namespace TETR04o {
         }
 
         public void Down() {
-            if (indexMenu == 3) return;
+            if (indexMenu == 2) return;
             indexMenu++;
             ChangeColorText(indexMenu);
             RequestSerialization();

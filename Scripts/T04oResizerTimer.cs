@@ -13,11 +13,14 @@ namespace TETR04o {
         // Update is called once per frame
         void Update()
         {
-            timerCurrent += Time.deltaTime;
-            if (timerCurrent >= timerWait) {
-                resizerButton.SetOriginalSize();
-                StopTimer();
+            if (resizerButton.main.isUsing == 0) {
+                timerCurrent += Time.deltaTime;
+                if (timerCurrent >= timerWait) {
+                    resizerButton.SetOriginalSize();
+                    StopTimer();
+                }
             }
+            
         }
 
         public void ResetTimer() {
@@ -28,6 +31,7 @@ namespace TETR04o {
             gameObject.SetActive(true);
         }
         public void StopTimer() {
+            ResetTimer();
             gameObject.SetActive(false);
         }
     }

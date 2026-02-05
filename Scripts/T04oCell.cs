@@ -1,11 +1,16 @@
 using Unity.Mathematics;
 using UnityEngine;
 using UdonSharp;
+#if !COMPILER_UDONSHARP && UNITY_EDITOR
+using UnityEditor;
+using UdonSharpEditor;
+#endif
 namespace TETR04o {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     public class T04oCell : UdonSharpBehaviour
     {
-        public MeshRenderer meshRenderer;
+        public MeshRenderer[] meshRenderers;
+        public Material materialRenderer;
         public Material materialWhite;
         public bool isFilled;
         public bool isUnderPiece;
@@ -16,6 +21,14 @@ namespace TETR04o {
 
         private void Start() {
             gameField = line.gameField;
+            //SetMaterialMeshRenderers();
+        }
+
+        public void SetMaterialMeshRenderers(Material material) {
+            //materialRenderer = new Material(materialRenderer);
+            foreach (MeshRenderer mr in meshRenderers) {
+                mr.material = material;
+            }
         }
 
         public void SetCube(int color)
@@ -35,10 +48,12 @@ namespace TETR04o {
             Draw(material);
         }
         public void Draw(Material material) {
-            meshRenderer.material = material;
+            materialRenderer = material;
+            SetMaterialMeshRenderers(material);
         }
         public void Draw(int color) {
-            meshRenderer.material = line.gameField.colors.materials[color];
+            materialRenderer = line.gameField.colors.materials[color];
+            SetMaterialMeshRenderers(materialRenderer);
         }
         public void DrawGhost() {
             if (isUnderPiece) return;
@@ -53,13 +68,15 @@ namespace TETR04o {
         public void ClearSafe() {
             if (isFilled == true) return;
             isUnderPiece = true;
-            meshRenderer.material = materialWhite;
+            materialRenderer = materialWhite;
+            SetMaterialMeshRenderers(materialRenderer);
         }
         public void Clear()
         {
             isUnderPiece = false;
             isFilled = false;
-            meshRenderer.material = materialWhite;
+            materialRenderer = materialWhite;
+            SetMaterialMeshRenderers(materialRenderer);
         }
 
         public T04oCell GetNeighbour(Vector2Int dir) {
@@ -182,7 +199,33 @@ namespace TETR04o {
         public void Paste(T04oCell cell) {
             isFilled = cell.isFilled;
             isUnderPiece = cell.isUnderPiece;
-            Draw(cell.meshRenderer.material);
+            Draw(cell.materialRenderer);
         }
     }
+    #if !COMPILER_UDONSHARP && UNITY_EDITOR
+    [CustomEditor(typeof(T04oCell))]
+    public class T04oCellEditor : Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            if (UdonSharpGUI.DrawDefaultUdonSharpBehaviourHeader(target)) return;
+            DrawDefaultInspector();
+
+            T04oCell myTarget = (T04oCell)target;
+
+            EditorGUILayout.Space();
+            if (GUILayout.Button("SetMaterialMeshRenderers"))
+            {
+                //myTarget.SetMaterialMeshRenderers();
+                //myTarget.materialRenderer = new Material(myTarget.materialWhite);
+                foreach (MeshRenderer mr in myTarget.meshRenderers) {
+                    
+                    mr.material = myTarget.materialRenderer;
+                    EditorUtility.SetDirty(mr);
+                }
+                EditorUtility.SetDirty(myTarget);
+            }
+        }
+    }
+    #endif
 }
