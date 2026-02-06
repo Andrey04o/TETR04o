@@ -1,0 +1,26 @@
+#if !COMPILER_UDONSHARP && UNITY_EDITOR
+using UnityEngine;
+using UnityEditor;
+using UdonSharpEditor;
+namespace TETR04o {
+    [CustomEditor(typeof(T04oHandling))]
+    public class T04oHandlingEditor : Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            if (UdonSharpGUI.DrawDefaultUdonSharpBehaviourHeader(target)) return;
+            DrawDefaultInspector();
+            T04oHandling myTarget = (T04oHandling)target;
+            EditorGUILayout.Space();
+            if (GUILayout.Button("Set handling reference to all arcade machines"))
+            {
+                T04oMain[] mains = FindObjectsByType<T04oMain>(FindObjectsSortMode.None);
+                foreach (T04oMain main in mains) {
+                    main.handling = myTarget;
+                    EditorUtility.SetDirty(main);
+                }
+            }
+        }
+    }
+}
+#endif
