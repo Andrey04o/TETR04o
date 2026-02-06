@@ -1,0 +1,19 @@
+{
+  "name": "com.andrey04o.tetr04o",
+  "displayName": "com.andrey04o.tetr04o",
+  "version": "0.0.1",
+  "description": "Describe this Package",
+  "dependencies": {},
+  "gitDependencies": {},
+  "vpmDependencies": {
+    "com.vrchat.worlds": "3.10.1"
+  },
+  "author": {
+    "name": "Andrey04o",
+    "email": "cool.dddaa@yandex.ru",
+    "url": "https://andrey04o.itch.io/"
+  },
+  "legacyFolders": {},
+  "legacyFiles": {},
+  "localPath": "E:\\VRChatProjects\\TETR04o-vpm\\Packages\\com.andrey04o.tetr04o"
+}
