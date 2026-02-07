@@ -22,6 +22,10 @@ namespace TETR04o {
                 EditorUtility.SetDirty(myTarget);
             }
         }
+        public static void SetReference(T04oExtraSettings myTarget) {
+            myTarget.stations = FindObjectsByType<T04oGStation>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            EditorUtility.SetDirty(myTarget);
+        }
     }
     #endif
 }

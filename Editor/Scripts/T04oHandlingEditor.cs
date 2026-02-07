@@ -15,10 +15,13 @@ namespace TETR04o {
             if (GUILayout.Button("Set handling reference to all arcade machines"))
             {
                 T04oMain[] mains = FindObjectsByType<T04oMain>(FindObjectsSortMode.None);
-                foreach (T04oMain main in mains) {
-                    main.handling = myTarget;
-                    EditorUtility.SetDirty(main);
-                }
+                SetReference(myTarget, mains);
+            }
+        }
+        public static void SetReference(T04oHandling myTarget, T04oMain[] mains) {
+            foreach (T04oMain main in mains) {
+                main.handling = myTarget;
+                EditorUtility.SetDirty(main);
             }
         }
     }

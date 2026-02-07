@@ -16,10 +16,7 @@ namespace TETR04o {
             if (GUILayout.Button("Set hotkeys reference to all arcade machines"))
             {
                 T04oMain[] mains = FindObjectsByType<T04oMain>(FindObjectsSortMode.None);
-                foreach (T04oMain main in mains) {
-                    main.hotkeys = myTarget;
-                    EditorUtility.SetDirty(main);
-                }
+                SetReference(myTarget, mains);
                 //EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
             }
             if (GUILayout.Button("Set default keys"))
@@ -32,6 +29,12 @@ namespace TETR04o {
             {
                 myTarget.indexKeyCodes = (int[])Enum.GetValues(typeof(KeyCode));
                 EditorUtility.SetDirty(myTarget);
+            }
+        }
+        public static void SetReference(T04oHotkeys myTarget, T04oMain[] mains) {
+            foreach (T04oMain main in mains) {
+                main.hotkeys = myTarget;
+                EditorUtility.SetDirty(main);
             }
         }
     }
