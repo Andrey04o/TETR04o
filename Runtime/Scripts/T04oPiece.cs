@@ -299,8 +299,6 @@ namespace TETR04o {
             return true;
         }
         public bool CheckWallKick(Vector2Int direction) {
-            
-            Debug.Log(direction);
             foreach(T04oPieceLine pieceline in pieceLines) {
                 foreach(T04oPieceCell pieceCell in pieceline.pieceCells) {
                     if (pieceCell == null) continue;
@@ -353,7 +351,6 @@ namespace TETR04o {
             int counter = 0;
             foreach (Vector2Int dir in wallKick.GetDataWallKick(this, clockwise)) {
                 counter++;
-                Debug.Log(counter);
                 if (CheckWallKick(dir)) {
                     //Debug.Log("wallkick " + counter);
                     //position += dir;

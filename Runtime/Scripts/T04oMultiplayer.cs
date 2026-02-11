@@ -3,6 +3,7 @@ using UdonSharp;
 using System;
 using VRC.SDK3.UdonNetworkCalling;
 using VRC.Udon.Common.Interfaces;
+using VRC.SDKBase;
 namespace TETR04o {
     [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     public class T04oMultiplayer : UdonSharpBehaviour
@@ -15,7 +16,17 @@ namespace TETR04o {
         [UdonSynced] public byte countAlive;
         [UdonSynced] public byte indexReady;
         [UdonSynced] public bool isInProcess = false;
+        [UdonSynced] public byte indexCurrentOwnerMachineId;
         //[UdonSynced] public byte isGameRunning;
+        public void BecameOwner(byte machineId) {
+            if (machines[machineId].main.isUsing == 1) {
+                if ((byte)(Networking.GetOwner(gameObject).playerId % byte.MaxValue) == machines[indexCurrentOwnerMachineId].main.playerID) {
+                    return;
+                }
+            }
+            Networking.SetOwner(Networking.LocalPlayer, gameObject);
+            indexCurrentOwnerMachineId = machineId;
+        }
         public void AddPlayerRequest(byte playerId) {
             SendCustomNetworkEvent(NetworkEventTarget.Owner, nameof(AddPlayer), playerId);
             //SendCustomNetworkEvent((IUdonEventReceiver)this, NetworkEventTarget.Owner, nameof(AddPlayer), playerId);
@@ -115,6 +126,7 @@ namespace TETR04o {
             StartTimerStart();
         }
         void StartTimerStart() {
+            if (playersAlive.Length <= 1) isInProcess = false;
             if (isInProcess == true) return;
             if (count <= 1) {
                 timerStart.StopTimer();
@@ -204,7 +216,7 @@ namespace TETR04o {
             }
         }
         public void ProcessLastPlayer() {
-            if (countAlive == 1) {
+            if (countAlive <= 1) {
                 machines[playersAlive[0]].GameWinRequest();
                 isInProcess = false;
                 RequestSerialization();
@@ -217,15 +229,15 @@ namespace TETR04o {
             ShowPlayerCountAlive();
         }
         public T04oGameProcess GetRandomPlayerOpponent(byte myId) {
-            if (countAlive == 1) return machines[myId];
-
+            if (countAlive <= 1) return machines[myId];
             int randomNumber = UnityEngine.Random.Range(0, countAlive);
-            if (randomNumber == myId) {
+            if (playersAlive[randomNumber] == myId) {
                 if (randomNumber == 0) randomNumber += 1;
-                else if (randomNumber == count - 1) randomNumber -= 1;
+                else if (randomNumber == countAlive - 1) randomNumber = countAlive - 2;
                 else if (UnityEngine.Random.Range(0, 2) == 0) randomNumber -= 1;
                 else randomNumber += 1;
             }
+            if (playersAlive[randomNumber] == byte.MaxValue) return machines[myId];
             return machines[playersAlive[randomNumber]];
         }
     }

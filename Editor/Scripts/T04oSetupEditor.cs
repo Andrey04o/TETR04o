@@ -1,3 +1,4 @@
+#if !COMPILER_UDONSHARP && UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -94,3 +95,4 @@ namespace TETR04o {
         }
     }
 }
+#endif

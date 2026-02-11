@@ -20,7 +20,7 @@ namespace TETR04o {
         [HideInInspector] public T04oControls controls;
         [UdonSynced] [HideInInspector] public byte isGameStarted = 0;
         [UdonSynced] [HideInInspector] public byte isUsing = 0;
-        [UdonSynced] byte playerID = 0;
+        [UdonSynced] [HideInInspector] public byte playerID = 0;
         public void ChangeToGame() {
             mainMenu.gameObject.SetActive(false);
             gameProcess.gameProcessInterface.SetActive(true);

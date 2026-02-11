@@ -70,11 +70,9 @@ namespace TETR04o {
             timer_sdf = main.handling.sdf;
         }
         public void SetDcd() {
-            Debug.Log("setDCD");
             timer_dcd = main.handling.dcd;
         }
         public void ProcessRemoveDcd() {
-            Debug.Log("removeDCD");
             timer_dcd = 0;
         }
         public void PressLeft() {

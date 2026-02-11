@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -213,6 +213,7 @@ MonoBehaviour:
   textMeshLetter: {fileID: 4005879748825903964}
   previousKeyKode: 0
   indexButtonNumber: 0
+  textPressAnyKey: Press any key
 --- !u!114 &8395898166058082681
 MonoBehaviour:
   m_ObjectHideFlags: 0

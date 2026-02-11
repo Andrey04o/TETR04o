@@ -68,6 +68,7 @@ MonoBehaviour:
   countAlive: 0
   indexReady: 0
   isInProcess: 0
+  indexCurrentOwnerMachineId: 0
 --- !u!114 &4162200227078721001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,7 +112,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4926541582856844944
 Transform:
   m_ObjectHideFlags: 0

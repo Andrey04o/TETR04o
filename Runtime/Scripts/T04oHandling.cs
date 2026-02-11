@@ -80,10 +80,10 @@ namespace TETR04o {
             SaveValue(playerApi, HandlingType.sdf, sdf);
         }
         public void SetDefault() {
-            SetValue(HandlingType.arr, 0.2f);
-            SetValue(HandlingType.das, 0.2f);
+            SetValue(HandlingType.arr, 0.1f);
+            SetValue(HandlingType.das, 0.15f);
             SetValue(HandlingType.dcd, 0.0f);
-            SetValue(HandlingType.sdf, 0.2f);
+            SetValue(HandlingType.sdf, 0.1f);
             ShowValues();
         }
     }

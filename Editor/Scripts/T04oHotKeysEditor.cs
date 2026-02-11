@@ -1,8 +1,8 @@
+#if !COMPILER_UDONSHARP && UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 using UdonSharpEditor;
 using System;
-#if !COMPILER_UDONSHARP && UNITY_EDITOR
 namespace TETR04o {
     [CustomEditor(typeof(T04oHotkeys))]
     public class T04oHotKeysEditor : Editor

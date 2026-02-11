@@ -135,6 +135,7 @@ namespace TETR04o {
         }
         public void JoinGame() {
             isPlayerJoined = true;
+            main.multiplayer.BecameOwner(main.gameProcess.id);
             main.multiplayer.AddPlayerRequest(main.gameProcess.id);
             ShowReady();
             RequestSerialization();
