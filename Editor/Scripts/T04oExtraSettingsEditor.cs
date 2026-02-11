@@ -26,6 +26,16 @@ namespace TETR04o {
             myTarget.stations = FindObjectsByType<T04oGStation>(FindObjectsInactive.Include, FindObjectsSortMode.None);
             EditorUtility.SetDirty(myTarget);
         }
+        public static void SetReferenceSerialized(T04oExtraSettings myTarget) {
+            T04oGStation[] stations = FindObjectsByType<T04oGStation>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            SerializedObject serialized = new SerializedObject(myTarget);
+            SerializedProperty stationsProp = serialized.FindProperty("stations");
+            stationsProp.arraySize = stations.Length;
+            for (int i = 0; i < stations.Length; i++) {
+                stationsProp.GetArrayElementAtIndex(i).objectReferenceValue = stations[i];
+            }
+            stationsProp.serializedObject.ApplyModifiedProperties();
+        }
     }
-    #endif
 }
+#endif

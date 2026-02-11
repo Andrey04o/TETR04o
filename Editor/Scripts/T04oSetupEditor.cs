@@ -87,9 +87,9 @@ namespace TETR04o {
 
         void SetReferences() {
             T04oMultiplayerEditor.SetReferenceAndIDSSerialized(multiplayer, machines);
-            T04oHotKeysEditor.SetReference(hotkeys, mains);
-            T04oHandlingEditor.SetReference(handling, mains);
-            T04oExtraSettingsEditor.SetReference(extraSettings);
+            T04oHotKeysEditor.SetReferenceSerialized(hotkeys, mains);
+            T04oHandlingEditor.SetReferenceSerialized(handling, mains);
+            T04oExtraSettingsEditor.SetReferenceSerialized(extraSettings);
             isSuccess = true;
         }
     }

@@ -24,6 +24,15 @@ namespace TETR04o {
                 EditorUtility.SetDirty(main);
             }
         }
+
+        public static void SetReferenceSerialized(T04oHandling myTarget, T04oMain[] mains) {
+            foreach (T04oMain main in mains) {
+                SerializedObject mainObj = new SerializedObject(main);
+                SerializedProperty handlingProp = mainObj.FindProperty("handling");
+                handlingProp.objectReferenceValue = myTarget;
+                mainObj.ApplyModifiedProperties();
+            }
+        }
     }
 }
 #endif

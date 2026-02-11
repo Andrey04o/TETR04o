@@ -37,6 +37,16 @@ namespace TETR04o {
                 EditorUtility.SetDirty(main);
             }
         }
+
+        public static void SetReferenceSerialized(T04oHotkeys myTarget, T04oMain[] mains) {
+            foreach (T04oMain main in mains)
+            {
+                SerializedObject mainObj = new SerializedObject(main);
+                SerializedProperty hotkeysProp = mainObj.FindProperty("hotkeys");
+                hotkeysProp.objectReferenceValue = myTarget;
+                mainObj.ApplyModifiedProperties();
+            }
+        }
     }
 }
 #endif
