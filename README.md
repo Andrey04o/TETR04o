@@ -23,22 +23,18 @@ A Tetris parody game made for VRChat using UdonSharp
 
 # Installation
 
-<details><summary>
-
 ### Import with [VRChat Creator Companion](https://vcc.docs.vrchat.com/vpm/packages#user-packages):</summary>
 
-> 1. In VRChat Creator Companion, navigate to `Settings` > `Packages` > `Add Repository`
-> 2. Enter <pre lang="md">https://andrey04o.github.io/TETR04o-vpm/index.json</pre>
-> 3. `TETR04o` should now be visible under `Community Repositories`
+1. In VRChat Creator Companion, navigate to `Settings` > `Packages` > `Add Repository`
+2. Enter <pre lang="md">https://andrey04o.github.io/TETR04o-vpm/index.json</pre>
+3. `TETR04o` should now be visible under `Community Repositories`
 
-</details><details><summary>
 
-### Import from [Unitypackage](https://docs.unity3d.com/2019.4/Documentation/Manual/AssetPackagesImport.html):</summary>
+### Import from [Unitypackage](https://docs.unity3d.com/2019.4/Documentation/Manual/AssetPackagesImport.html):
 
-> 1. Download latest package from [here](https://github.com/Andrey04o/TETR04o-vpm/releases)
-> 2. Import the downloaded .unitypackage into your Unity project
+1. Download latest package from [here](https://github.com/Andrey04o/TETR04o-vpm/releases)
+2. Import the downloaded .unitypackage into your Unity project
 
-</details>
 
 # How to use
 
@@ -48,15 +44,12 @@ A Tetris parody game made for VRChat using UdonSharp
 - `Multiplayer` prefab<br/>
 Put them to your world.
 
-2. In the `Controls settings` prefab, 
-- select the `Hotkey` gameobject and in the inspector window press the `Set hotkeys reference to all arcade machines` button
-- select the `Handling` gameobject and in the inspector window press the `Set handling reference to all arcade machines` button
-- select the `Extra` gameobject and in the inspector window press the `Get all T04oGStations` button
+2. Select any `TETR04o` prefab, press the `Setup TETR04o arcade machines` button<br/>
+![The T04o Setup script, setup successfull](https://github.com/Andrey04o/TETR04o-vpm/blob/main/screenshot2.png?raw=true)
 
-3. In the `Multiplayer` prefab, in the inspector window press the `Get all arcade machines and set ids` button
 
 That's it, now it should work fine.</br>
-If you add another `TETR04o` prefab to your world, please repeat steps 2 and 3
+If you add another `TETR04o` prefab to your world, please repeat the step 2
 
 You can find an example in `Packages/TETR04o/Runtime/Scenes/ExampleScene`
 

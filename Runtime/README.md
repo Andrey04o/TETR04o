@@ -1,4 +1,5 @@
 The TETR04o package, made by Andrey04o
+github https://github.com/Andrey04o/TETR04o
 
 You can find me in:
 Patreon https://patreon.com/04o
@@ -16,12 +17,7 @@ How to use it?
 - Multiplayer prefab
 Put them to your world.
 
-2. In the Controls settings prefab, 
-- select the "Hotkey" gameobject and in the inspector window press the "Set hotkeys reference to all arcade machines" button
-- select the "Handling" gameobject and in the inspector window press the "Set handling reference to all arcade machines" button
-- select the "Extra" gameobject and in the inspector window press the "Get all T04oGStations" button
-
-3. In the Multiplayer prefab, in the inspector window press the "Get all arcade machines and set ids" button
+2. Select any TETR04o prefab, press the "Setup TETR04o arcade machines" button
 
 That's it, now it should work fine.
-If you add another TETR04o prefab to your world, please repeat steps 2 and 3
+If you add another TETR04o prefab to your world, please repeat the step 2
