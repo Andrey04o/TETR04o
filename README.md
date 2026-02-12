@@ -3,6 +3,8 @@ A Tetris parody game made for VRChat using UdonSharp
 
 ![TETR04o arcade machine](https://github.com/Andrey04o/TETR04o-vpm/blob/main/screenshot1.png?raw=true)
 
+[Video demonstration](https://youtu.be/c83ENthPOJI)
+
 [Trailer](https://youtu.be/SP11tQ6hIlU)
 
 [VRChat world](https://vrchat.com/home/launch?worldId=wrld_2af7b8d2-ed8f-4e51-9fab-b8ddf98ade14)
