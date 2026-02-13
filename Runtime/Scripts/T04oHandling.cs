@@ -17,10 +17,14 @@ namespace TETR04o {
         public T04oSliderSetting slider_das;
         public T04oSliderSetting slider_dcd;
         public T04oSliderSetting slider_sdf;
-        public float arr; // automatic repeat rate
-        public float das; // delayet auto shift
-        public float dcd; // DAS cut delay (after rotating, dropping piece)
-        public float sdf; // soft drop factor
+        [HideInInspector] public float arr; // automatic repeat rate
+        [HideInInspector] public float das; // delayet auto shift
+        [HideInInspector] public float dcd; // DAS cut delay (after rotating, dropping piece)
+        [HideInInspector] public float sdf; // soft drop factor
+        public float arrDefault = 0.1f;
+        public float dasDefault = 0.15f;
+        public float dcdDefault = 0.0f;
+        public float sdfDefault = 0.1f;
         public override void OnPlayerRestored(VRCPlayerApi player)
         {
             base.OnPlayerRestored(player);
@@ -80,10 +84,10 @@ namespace TETR04o {
             SaveValue(playerApi, HandlingType.sdf, sdf);
         }
         public void SetDefault() {
-            SetValue(HandlingType.arr, 0.1f);
-            SetValue(HandlingType.das, 0.15f);
-            SetValue(HandlingType.dcd, 0.0f);
-            SetValue(HandlingType.sdf, 0.1f);
+            SetValue(HandlingType.arr, arrDefault);
+            SetValue(HandlingType.das, dasDefault);
+            SetValue(HandlingType.dcd, dcdDefault);
+            SetValue(HandlingType.sdf, sdfDefault);
             ShowValues();
         }
     }
