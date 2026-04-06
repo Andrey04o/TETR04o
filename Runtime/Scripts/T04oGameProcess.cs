@@ -19,6 +19,7 @@ namespace TETR04o {
         public T04oGarbageSender garbageSender;
         public T04oMain main;
         public T04oScoring scoring;
+        public T04oBagSystem bagSystem;
         public T04oPlayersAlive playersAlive;
         private T04oPiece nextPiece;
         public float speedFall = 1.2f;
@@ -81,6 +82,7 @@ namespace TETR04o {
             //gameObject.SetActive(true);
             gameProcessInterface.SetActive(true);
             playersAlive.Show(main.multiplayerMenu.isPlayerJoined);
+            bagSystem.InitArray(pieces, 111, true);
             FillNextPieces();
             //ChooseNextPiece();
             SpawnNewPiece();
@@ -159,7 +161,7 @@ namespace TETR04o {
         }
 
         public byte ChooseRandomPiece() {
-            return (byte)pieces[Random.Range(1,8)].index;
+            return bagSystem.ChooseRandomPiece();
         }
         void ShowVisuallyNextPieces() {
             for (int i = 0; i < gameFieldNextPieces.Length; i++) {
