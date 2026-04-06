@@ -17,11 +17,11 @@ A Tetris parody game made for VRChat using UdonSharp
 - Ghost piece
 - Wall kicks
 - Lock delay
-- Synchronization with other players
-(it's not syncing the whole board every time, only the changed lines)
-- Competition with other players
+- Synchronization
+- Multiplayer (unstable)
 - Control settings
 - Handling settings
+- 7-bag
 
 # Installation
 
