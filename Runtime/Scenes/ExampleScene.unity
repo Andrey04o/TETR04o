@@ -51663,7 +51663,7 @@ PrefabInstance:
         type: 3}
       propertyPath: stations.Array.data[1]
       value: 
-      objectReference: {fileID: 1219383539}
+      objectReference: {fileID: 1542843063}
     - target: {fileID: 5061010215565726450, guid: aa3190ec56e74be4581eb8b63582fa62,
         type: 3}
       propertyPath: stations.Array.data[2]
@@ -51673,22 +51673,22 @@ PrefabInstance:
         type: 3}
       propertyPath: stations.Array.data[3]
       value: 
-      objectReference: {fileID: 1898697745}
+      objectReference: {fileID: 1566997287}
     - target: {fileID: 5061010215565726450, guid: aa3190ec56e74be4581eb8b63582fa62,
         type: 3}
       propertyPath: stations.Array.data[4]
       value: 
-      objectReference: {fileID: 1566997287}
+      objectReference: {fileID: 1242207231}
     - target: {fileID: 5061010215565726450, guid: aa3190ec56e74be4581eb8b63582fa62,
         type: 3}
       propertyPath: stations.Array.data[5]
       value: 
-      objectReference: {fileID: 1542843063}
+      objectReference: {fileID: 1219383539}
     - target: {fileID: 5061010215565726450, guid: aa3190ec56e74be4581eb8b63582fa62,
         type: 3}
       propertyPath: stations.Array.data[6]
       value: 
-      objectReference: {fileID: 1242207231}
+      objectReference: {fileID: 1898697745}
     - target: {fileID: 5061010215565726450, guid: aa3190ec56e74be4581eb8b63582fa62,
         type: 3}
       propertyPath: serializationData.Prefab
