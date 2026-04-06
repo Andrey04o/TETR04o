@@ -20,6 +20,9 @@ namespace TETR04o {
             if (_randomizer != randomizer) {
                 InitArray(gameProcess.pieces, gameProcess.randomizer, false);
             }
+            if (currentBag == null) {
+                InitArray(gameProcess.pieces, gameProcess.randomizer, false);
+            }
             if (_bagCount != bagCount) {
                 GenerateBag();
             }
