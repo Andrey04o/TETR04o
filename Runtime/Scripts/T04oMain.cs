@@ -68,10 +68,10 @@ namespace TETR04o {
                 resizerButton.DisableInteraction(false);
             }
         }
-        public void StartTheGame() {
+        public void StartTheGame(int randomizer = 0) {
             isGameStarted = 1;
             ChangeToGame();
-            gameProcess.StartGame();
+            gameProcess.StartGame(randomizer);
             RequestSerialization();
         }
         public void JoinMultiplayer() {

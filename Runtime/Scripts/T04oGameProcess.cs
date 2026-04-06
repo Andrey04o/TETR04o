@@ -43,6 +43,9 @@ namespace TETR04o {
         [UdonSynced] byte countHold = 1;
         [UdonSynced] byte indexCombo = 0;
         [UdonSynced] byte indexCountLockDelayReset = 0;
+        [UdonSynced] public int randomizer = 0;
+        [UdonSynced] byte bsBagCount;
+        [UdonSynced] byte bsIndexCount;
         public void StartUpdate() {
             gameProcessUpdate.gameObject.SetActive(true);
         }
@@ -72,7 +75,8 @@ namespace TETR04o {
             currentPieceNetworkHold = 0;
             ShowVisuallyHold();
         }
-        public void StartGame() {
+        public void StartGame(int randomizer = 0) {
+            this.randomizer = randomizer;
             //InitIndexes();
             StartUpdate();
             MakeGameClear();
@@ -82,7 +86,8 @@ namespace TETR04o {
             //gameObject.SetActive(true);
             gameProcessInterface.SetActive(true);
             playersAlive.Show(main.multiplayerMenu.isPlayerJoined);
-            bagSystem.InitArray(pieces, 111, true);
+            if (randomizer == 0) randomizer = Random.Range(1, 100000000);
+            bagSystem.InitArray(pieces, randomizer, true);
             FillNextPieces();
             //ChooseNextPiece();
             SpawnNewPiece();
@@ -273,6 +278,10 @@ namespace TETR04o {
         public void ResetCombo() {
             indexCombo = 0;
         }
+        void SyncBagSystem() {
+            bagSystem.indexCount = bsIndexCount;
+            bagSystem.bagCount = bsBagCount;
+        }
 
         [NetworkCallable] public void UpdatePiece() {
             RequestSerialization();
@@ -281,6 +290,7 @@ namespace TETR04o {
         public override void OnDeserialization()
         {
             base.OnDeserialization();
+            SyncBagSystem();
             ShowVisuallyNextPieces();
             ShowVisuallyHold();
             //SpawnNewPieceNetwork();

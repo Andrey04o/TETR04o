@@ -7,9 +7,9 @@ namespace TETR04o {
     public class T04oBagSystem : UdonSharpBehaviour
     {
         public T04oGameProcess gameProcess;
-        public byte indexCount;
+        public byte indexCount; //synced
         byte _indexCount;
-        public byte bagCount;
+        public byte bagCount; //synced
         byte _bagCount;
         int[] currentBag;
         int randomizer = 0;
@@ -18,7 +18,7 @@ namespace TETR04o {
         
         public byte ChooseRandomPiece() {
             if (_randomizer != randomizer) {
-                InitArray(gameProcess.pieces, randomizer, false);
+                InitArray(gameProcess.pieces, gameProcess.randomizer, false);
             }
             if (_bagCount != bagCount) {
                 GenerateBag();

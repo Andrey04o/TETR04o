@@ -158,12 +158,12 @@ namespace TETR04o {
             ShowReady();
             ShowVisibility();
         }
-        public void StartGameRequest() {
-            NetworkCalling.SendCustomNetworkEvent((IUdonEventReceiver)this, NetworkEventTarget.Owner, nameof(StartGame));
+        public void StartGameRequest(int randomizer) {
+            NetworkCalling.SendCustomNetworkEvent((IUdonEventReceiver)this, NetworkEventTarget.Owner, nameof(StartGame), randomizer);
             //SendCustomNetworkEvent(NetworkEventTarget.Owner, nameof(StartGame));
         }
-        [NetworkCallable] public void StartGame() {
-            main.StartTheGame();
+        [NetworkCallable] public void StartGame(int randomizer) {
+            main.StartTheGame(randomizer);
         }
         public void SetVictorPlace(byte value) {
             indexVictor = value;

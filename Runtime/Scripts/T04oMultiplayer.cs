@@ -17,6 +17,7 @@ namespace TETR04o {
         [UdonSynced] public byte indexReady;
         [UdonSynced] public bool isInProcess = false;
         [UdonSynced] public byte indexCurrentOwnerMachineId;
+        int randomizer = 0;
         //[UdonSynced] public byte isGameRunning;
         public void BecameOwner(byte machineId) {
             if (machines[machineId].main.isUsing == 1) {
@@ -154,8 +155,9 @@ namespace TETR04o {
             //isGameRunning = 1;
             CopyArrayIndexesToPlayersAlive();
             countAlive = count;
+            randomizer = UnityEngine.Random.Range(1, 100000000);
             for (int i = 0; i < count; i++) {
-                machines[players[i]].main.multiplayerMenu.StartGameRequest();
+                machines[players[i]].main.multiplayerMenu.StartGameRequest(randomizer);
             }
             ShowPlayerCountAlive();
             isInProcess = true;
